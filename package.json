@@ -1,0 +1,15 @@
+{
+  "name": "guorantian-fruit-shop",
+  "version": "1.0.0",
+  "description": "果然甜 - 台灣新鮮水果電商網站",
+  "scripts": {
+    "start": "npx serve . -p 3000",
+    "build": "echo 'Static site ready'"
+  },
+  "keywords": ["fruit", "taiwan", "ecommerce", "水果", "果然甜"],
+  "author": "果然甜",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}

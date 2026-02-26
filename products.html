@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>選購水果 - 果然甜</title>
+  <link rel="stylesheet" href="src/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">🍉</span>
+        <span class="logo-text">果然甜</span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">首頁</a></li>
+        <li><a href="products.html" class="nav-link active">選購水果</a></li>
+        <li><a href="info.html" class="nav-link">水果知識</a></li>
+        <li><a href="about.html" class="nav-link">關於我們</a></li>
+        <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="cart.html" class="cart-btn" id="cartBtn">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <span class="section-badge" style="background:rgba(255,255,255,0.25);color:white;">新鮮直送</span>
+      <h1>選購新鮮水果</h1>
+      <p>嚴選台灣各地當季水果，每天新鮮到貨，讓你隨時都能吃到最甜最鮮的好滋味</p>
+    </div>
+    <div class="page-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#fffbf0"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section class="filter-bar">
+    <div class="container">
+      <div class="filter-btns">
+        <button class="filter-btn active" data-filter="all">全部水果</button>
+        <button class="filter-btn" data-filter="熱帶水果">🌴 熱帶水果</button>
+        <button class="filter-btn" data-filter="夏季水果">☀️ 夏季水果</button>
+        <button class="filter-btn" data-filter="溫帶水果">🍃 溫帶水果</button>
+        <button class="filter-btn" data-filter="inStock">✅ 有庫存</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="popular" style="padding-top: 40px;">
+    <div class="container">
+      <div class="products-grid" id="allProducts"></div>
+      <div id="noResults" style="display:none; text-align:center; padding: 60px 20px;">
+        <div style="font-size:4rem; margin-bottom:16px;">🔍</div>
+        <h3 style="font-size:1.3rem; margin-bottom:8px;">找不到符合條件的水果</h3>
+        <p style="color:#888;">請試試其他篩選條件</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><span class="logo-icon">🍉</span><span class="logo-text">果然甜</span></a>
+          <p>台灣在地新鮮水果，從農場直送到您的餐桌</p>
+          <div class="social-links">
+            <a href="#" class="social-link">📘 Facebook</a>
+            <a href="#" class="social-link">📸 Instagram</a>
+            <a href="#" class="social-link">💬 LINE</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>快速連結</h4>
+          <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="products.html">選購水果</a></li>
+            <li><a href="info.html">水果知識</a></li>
+            <li><a href="about.html">關於我們</a></li>
+            <li><a href="contact.html">聯絡我們</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>服務說明</h4>
+          <ul>
+            <li><a href="#">配送說明</a></li>
+            <li><a href="#">退換貨政策</a></li>
+            <li><a href="#">隱私權政策</a></li>
+            <li><a href="#">常見問題</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>聯絡資訊</h4>
+          <p>📞 (02) 1234-5678</p>
+          <p>📧 hello@guorantian.tw</p>
+          <p>📍 台北市中山區水果路 88 號</p>
+          <p>🕐 週一至週六 09:00-18:00</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 果然甜水果專賣店 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="src/js/data.js"></script>
+  <script src="src/js/cart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Hamburger
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+      if (hamburger) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          navMenu.classList.toggle('open');
+        });
+      }
+
+      let currentFilter = 'all';
+
+      function renderProducts() {
+        const container = document.getElementById('allProducts');
+        const noResults = document.getElementById('noResults');
+        let filtered = fruitsData;
+
+        if (currentFilter === 'inStock') {
+          filtered = fruitsData.filter(f => f.inStock);
+        } else if (currentFilter !== 'all') {
+          filtered = fruitsData.filter(f => f.category === currentFilter);
+        }
+
+        if (filtered.length === 0) {
+          container.innerHTML = '';
+          noResults.style.display = 'block';
+        } else {
+          noResults.style.display = 'none';
+          container.innerHTML = filtered.map(f => createProductCard(f)).join('');
+          // Re-animate
+          setTimeout(() => {
+            document.querySelectorAll('.product-card').forEach(el => el.classList.add('animate-in'));
+          }, 50);
+        }
+      }
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.dataset.filter;
+          renderProducts();
+        });
+      });
+
+      renderProducts();
+    });
+  </script>
+</body>
+</html>

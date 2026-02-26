@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>購物車 - 果然甜</title>
+  <link rel="stylesheet" href="src/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">🍉</span>
+        <span class="logo-text">果然甜</span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">首頁</a></li>
+        <li><a href="products.html" class="nav-link">選購水果</a></li>
+        <li><a href="info.html" class="nav-link">水果知識</a></li>
+        <li><a href="about.html" class="nav-link">關於我們</a></li>
+        <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="cart.html" class="cart-btn" id="cartBtn">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="cart-section">
+    <div class="container">
+      <div style="margin-bottom: 32px;">
+        <h1 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 8px;">🛒 我的購物車</h1>
+        <p style="color: #888;">確認商品後即可完成訂購</p>
+      </div>
+
+      <!-- Empty Cart State -->
+      <div id="emptyCart" style="display:none;">
+        <div class="empty-cart">
+          <div class="empty-cart-icon">🛒</div>
+          <h3>購物車是空的</h3>
+          <p>還沒有選好的水果嗎？快去挑挑看！</p>
+          <a href="products.html" class="btn btn-primary">前往選購水果</a>
+        </div>
+      </div>
+
+      <!-- Cart Content -->
+      <div id="cartContent" class="cart-layout">
+        <div class="cart-items-container">
+          <h2>購物清單 <span id="itemCount" style="font-weight:400;color:#888;font-size:1rem;"></span></h2>
+          <div id="cartItemsList"></div>
+        </div>
+
+        <div class="cart-summary">
+          <h3>訂單摘要</h3>
+          <div class="summary-row">
+            <span>商品小計</span>
+            <span id="subtotal">NT$ 0</span>
+          </div>
+          <div class="summary-row">
+            <span>運費</span>
+            <span id="shipping">NT$ 120</span>
+          </div>
+          <div class="summary-row" id="freeShippingRow" style="display:none;">
+            <span style="color: #4CAF50;">免運費優惠</span>
+            <span style="color: #4CAF50;">- NT$ 120</span>
+          </div>
+          <div class="summary-row total">
+            <span>訂單總計</span>
+            <span class="price" id="totalAmount">NT$ 0</span>
+          </div>
+          <div id="freeShippingHint" style="font-size:0.82rem;color:#888;text-align:center;margin-top:8px;padding:8px;background:#f5f5f5;border-radius:8px;"></div>
+          <button class="checkout-btn" onclick="handleCheckout()">
+            🎉 立即結帳
+          </button>
+          <a href="products.html" style="display:block;text-align:center;margin-top:12px;font-size:0.9rem;color:#888;">
+            ← 繼續選購
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 推薦商品 -->
+  <section class="popular" style="padding-top: 60px;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">也許你會喜歡</span>
+        <h2>你可能還需要</h2>
+      </div>
+      <div class="products-grid" id="suggestedProducts"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><span class="logo-icon">🍉</span><span class="logo-text">果然甜</span></a>
+          <p>台灣在地新鮮水果，從農場直送到您的餐桌</p>
+          <div class="social-links">
+            <a href="#" class="social-link">📘 Facebook</a>
+            <a href="#" class="social-link">📸 Instagram</a>
+            <a href="#" class="social-link">💬 LINE</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>快速連結</h4>
+          <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="products.html">選購水果</a></li>
+            <li><a href="info.html">水果知識</a></li>
+            <li><a href="about.html">關於我們</a></li>
+            <li><a href="contact.html">聯絡我們</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>服務說明</h4>
+          <ul>
+            <li><a href="#">配送說明</a></li>
+            <li><a href="#">退換貨政策</a></li>
+            <li><a href="#">隱私權政策</a></li>
+            <li><a href="#">常見問題</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>聯絡資訊</h4>
+          <p>📞 (02) 1234-5678</p>
+          <p>📧 hello@guorantian.tw</p>
+          <p>📍 台北市中山區水果路 88 號</p>
+          <p>🕐 週一至週六 09:00-18:00</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 果然甜水果專賣店 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="src/js/data.js"></script>
+  <script src="src/js/cart.js"></script>
+  <script>
+    const FREE_SHIPPING_THRESHOLD = 800;
+    const SHIPPING_FEE = 120;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+      if (hamburger) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          navMenu.classList.toggle('open');
+        });
+      }
+
+      renderCart();
+      renderSuggested();
+    });
+
+    function renderCart() {
+      const emptyCart = document.getElementById('emptyCart');
+      const cartContent = document.getElementById('cartContent');
+      const cartItemsList = document.getElementById('cartItemsList');
+
+      if (Cart.items.length === 0) {
+        emptyCart.style.display = 'block';
+        cartContent.style.display = 'none';
+        return;
+      }
+
+      emptyCart.style.display = 'none';
+      cartContent.style.display = 'grid';
+
+      document.getElementById('itemCount').textContent = `(共 ${Cart.getCount()} 件)`;
+
+      cartItemsList.innerHTML = Cart.items.map(item => `
+        <div class="cart-item" id="cartItem-${item.id}">
+          <div class="cart-item-emoji">${item.emoji}</div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-unit">${item.unit}</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+              <span class="qty-num">${item.quantity}</span>
+              <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+            </div>
+          </div>
+          <div class="cart-item-price">NT$ ${(item.price * item.quantity).toLocaleString()}</div>
+          <button class="cart-item-remove" onclick="removeItem(${item.id})" title="移除">✕</button>
+        </div>
+      `).join('');
+
+      updateSummary();
+    }
+
+    function updateSummary() {
+      const subtotal = Cart.getTotal();
+      const isFreeShipping = subtotal >= FREE_SHIPPING_THRESHOLD;
+      const shipping = isFreeShipping ? 0 : SHIPPING_FEE;
+      const total = subtotal + shipping;
+
+      document.getElementById('subtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
+      document.getElementById('totalAmount').textContent = `NT$ ${total.toLocaleString()}`;
+      document.getElementById('freeShippingRow').style.display = isFreeShipping ? 'flex' : 'none';
+      document.getElementById('shipping').textContent = isFreeShipping ? 'NT$ 0' : `NT$ ${SHIPPING_FEE}`;
+
+      const hint = document.getElementById('freeShippingHint');
+      if (isFreeShipping) {
+        hint.textContent = '🎉 恭喜！您已達到免運門檻';
+        hint.style.background = '#E8F5E9';
+        hint.style.color = '#2E7D32';
+      } else {
+        const diff = FREE_SHIPPING_THRESHOLD - subtotal;
+        hint.textContent = `再消費 NT$ ${diff} 即可享免運費`;
+        hint.style.background = '#FFF3E0';
+        hint.style.color = '#E65100';
+      }
+    }
+
+    function changeQty(id, delta) {
+      const item = Cart.items.find(i => i.id === id);
+      if (item) {
+        Cart.updateQuantity(id, item.quantity + delta);
+        renderCart();
+      }
+    }
+
+    function removeItem(id) {
+      const el = document.getElementById(`cartItem-${id}`);
+      if (el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(20px)';
+        el.style.transition = 'all 0.3s ease';
+        setTimeout(() => {
+          Cart.remove(id);
+          renderCart();
+        }, 300);
+      }
+    }
+
+    function renderSuggested() {
+      const cartIds = Cart.items.map(i => i.id);
+      const suggested = fruitsData.filter(f => f.inStock && !cartIds.includes(f.id)).slice(0, 4);
+      const container = document.getElementById('suggestedProducts');
+      if (container) {
+        container.innerHTML = suggested.map(f => createProductCard(f)).join('');
+        setTimeout(() => {
+          document.querySelectorAll('.product-card').forEach(el => el.classList.add('animate-in'));
+        }, 50);
+      }
+    }
+
+    function handleCheckout() {
+      if (Cart.items.length === 0) return;
+
+      const total = Cart.getTotal();
+      const shipping = total >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
+
+      Cart.clear();
+
+      document.querySelector('.cart-section').innerHTML = `
+        <div class="container">
+          <div class="success-section" style="padding: 60px 0; min-height: auto;">
+            <div class="success-card">
+              <div class="success-icon">🎉</div>
+              <h2>訂單成立成功！</h2>
+              <p>感謝您在果然甜選購！<br>我們已收到您的訂單，將於 1-2 個工作天內安排出貨。<br>配送時間約 1-3 天，新鮮水果即將送到您手中！</p>
+              <div style="background: #FFF3E0; border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: left;">
+                <div style="font-weight: 700; margin-bottom: 8px;">訂單資訊</div>
+                <div style="font-size: 0.9rem; color: #555; line-height: 1.8;">
+                  訂單編號：GRT-${Date.now().toString().slice(-6)}<br>
+                  訂單金額：NT$ ${(total + shipping).toLocaleString()}<br>
+                  預計到貨：${getDeliveryDate()}
+                </div>
+              </div>
+              <a href="products.html" class="btn btn-primary" style="display: inline-flex;">繼續選購水果</a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.querySelector('.popular').style.display = 'none';
+    }
+
+    function getDeliveryDate() {
+      const d = new Date();
+      d.setDate(d.getDate() + 3);
+      return `${d.getMonth() + 1}/${d.getDate()}（${['日','一','二','三','四','五','六'][d.getDay()]}）`;
+    }
+  </script>
+</body>
+</html>

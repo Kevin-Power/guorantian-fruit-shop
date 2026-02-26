@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>果然甜 - 新鮮水果直送到府</title>
+  <link rel="stylesheet" href="src/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 導覽列 -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">🍉</span>
+        <span class="logo-text">果然甜</span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link active">首頁</a></li>
+        <li><a href="products.html" class="nav-link">選購水果</a></li>
+        <li><a href="info.html" class="nav-link">水果知識</a></li>
+        <li><a href="about.html" class="nav-link">關於我們</a></li>
+        <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="cart.html" class="cart-btn" id="cartBtn">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero 區塊 -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🌴 台灣在地直送</div>
+      <h1 class="hero-title">
+        每一口都是<br>
+        <span class="highlight">大自然的甜蜜</span>
+      </h1>
+      <p class="hero-subtitle">嚴選台灣在地新鮮水果，產地直送到您家，讓您每天都能享受最甜最鮮的幸福滋味</p>
+      <div class="hero-btns">
+        <a href="products.html" class="btn btn-primary">立即選購</a>
+        <a href="info.html" class="btn btn-outline">認識水果</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">50+</span>
+          <span class="stat-label">水果品種</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">1000+</span>
+          <span class="stat-label">滿意客戶</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">24h</span>
+          <span class="stat-label">新鮮配送</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="fruit-orbit">
+        <div class="orbit-ring ring-1">
+          <div class="orbit-fruit" style="--angle:0deg">🍍</div>
+          <div class="orbit-fruit" style="--angle:120deg">🥭</div>
+          <div class="orbit-fruit" style="--angle:240deg">🍌</div>
+        </div>
+        <div class="orbit-ring ring-2">
+          <div class="orbit-fruit" style="--angle:60deg">🍓</div>
+          <div class="orbit-fruit" style="--angle:180deg">🍊</div>
+          <div class="orbit-fruit" style="--angle:300deg">🍇</div>
+        </div>
+        <div class="hero-main-fruit">🍉</div>
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,50 C360,100 1080,0 1440,50 L1440,100 L0,100 Z" fill="#fffbf0"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 特色區塊 -->
+  <section class="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">為什麼選擇我們</span>
+        <h2>果然甜的堅持</h2>
+        <p>我們只做一件事：讓你吃到最甜最新鮮的水果</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🌱</div>
+          <h3>產地直採</h3>
+          <p>與全台超過 80 位農友合作，採收後 24 小時內送達，保留最完整的天然甜分</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✅</div>
+          <h3>嚴格把關</h3>
+          <p>每批水果都經過品質檢驗，糖度、外觀、重量三重標準，確保您收到的每顆都是精品</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚚</div>
+          <h3>低溫配送</h3>
+          <p>全程冷鏈配送，維持水果最佳保鮮狀態，從農場到餐桌，新鮮無損</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💚</div>
+          <h3>友善農業</h3>
+          <p>支持友善環境農法，不使用農藥，讓您安心吃、放心給家人享用</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 熱銷水果 -->
+  <section class="popular">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">本週熱銷</span>
+        <h2>大家都在買</h2>
+        <p>最受歡迎的甜蜜選擇，每天新鮮到貨</p>
+      </div>
+      <div class="products-grid" id="homeProducts"></div>
+      <div class="view-all">
+        <a href="products.html" class="btn btn-primary">查看全部水果</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 水果知識 Banner -->
+  <section class="info-banner">
+    <div class="container">
+      <div class="info-banner-inner">
+        <div class="info-banner-content">
+          <span class="section-badge">水果小知識</span>
+          <h2>吃對水果，健康加倍！</h2>
+          <p>了解各種水果的營養成分、最佳產季與挑選技巧，讓每次購買都物超所值</p>
+          <a href="info.html" class="btn btn-white">探索水果知識庫</a>
+        </div>
+        <div class="info-banner-fruits">
+          <div class="floating-fruit" style="--delay:0s">🥝</div>
+          <div class="floating-fruit" style="--delay:0.5s">🍑</div>
+          <div class="floating-fruit" style="--delay:1s">🍋</div>
+          <div class="floating-fruit" style="--delay:1.5s">🍈</div>
+          <div class="floating-fruit" style="--delay:2s">🫐</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 顧客評價 -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">顧客好評</span>
+        <h2>他們都愛果然甜</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>「芒果超甜！比市面上的好吃太多了，小孩每天都要吃，已經回購第三次了！」</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">👩</div>
+            <div>
+              <strong>陳小姐</strong>
+              <span>台北市</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card featured">
+          <div class="stars">★★★★★</div>
+          <p>「送來的水果都很新鮮，包裝很仔細，每顆都完好無損。客服也很親切，有問題馬上回應！」</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">👨</div>
+            <div>
+              <strong>林先生</strong>
+              <span>高雄市</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>「買了禮盒送長輩，老人家說好久沒吃到這麼甜的鳳梨了，超開心推薦給大家！」</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">👩</div>
+            <div>
+              <strong>王小姐</strong>
+              <span>台中市</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="logo-icon">🍉</span>
+            <span class="logo-text">果然甜</span>
+          </a>
+          <p>台灣在地新鮮水果，<br>從農場直送到您的餐桌</p>
+          <div class="social-links">
+            <a href="#" class="social-link">📘 Facebook</a>
+            <a href="#" class="social-link">📸 Instagram</a>
+            <a href="#" class="social-link">💬 LINE</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>快速連結</h4>
+          <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="products.html">選購水果</a></li>
+            <li><a href="info.html">水果知識</a></li>
+            <li><a href="about.html">關於我們</a></li>
+            <li><a href="contact.html">聯絡我們</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>服務說明</h4>
+          <ul>
+            <li><a href="#">配送說明</a></li>
+            <li><a href="#">退換貨政策</a></li>
+            <li><a href="#">隱私權政策</a></li>
+            <li><a href="#">常見問題</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>聯絡資訊</h4>
+          <p>📞 (02) 1234-5678</p>
+          <p>📧 hello@guorantian.tw</p>
+          <p>📍 台北市中山區水果路 88 號</p>
+          <p>🕐 週一至週六 09:00-18:00</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 果然甜水果專賣店 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="src/js/data.js"></script>
+  <script src="src/js/cart.js"></script>
+  <script src="src/js/main.js"></script>
+</body>
+</html>

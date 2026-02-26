@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>水果知識 - 果然甜</title>
+  <link rel="stylesheet" href="src/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">🍉</span>
+        <span class="logo-text">果然甜</span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">首頁</a></li>
+        <li><a href="products.html" class="nav-link">選購水果</a></li>
+        <li><a href="info.html" class="nav-link active">水果知識</a></li>
+        <li><a href="about.html" class="nav-link">關於我們</a></li>
+        <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="cart.html" class="cart-btn" id="cartBtn">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <span class="section-badge" style="background:rgba(255,255,255,0.25);color:white;">知識就是力量</span>
+      <h1>水果知識庫</h1>
+      <p>認識水果的營養價值、挑選技巧與保存方法，讓每次購買都聰明又划算</p>
+    </div>
+    <div class="page-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#fffbf0"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 水果知識卡片 -->
+  <section class="info-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">吃對才健康</span>
+        <h2>水果營養與挑選指南</h2>
+        <p>每種水果都有它獨特的秘密，了解它才能吃得更健康</p>
+      </div>
+      <div class="knowledge-grid" id="knowledgeGrid"></div>
+    </div>
+  </section>
+
+  <!-- 產季導覽 -->
+  <section class="season-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">隨季節而甜</span>
+        <h2>台灣水果產季表</h2>
+        <p>當季水果最新鮮、最便宜，跟著季節吃最聰明</p>
+      </div>
+      <div class="season-grid">
+        <div class="season-card">
+          <div class="season-icon">🌸</div>
+          <h3>春季 (3-5月)</h3>
+          <div class="season-fruits">
+            <span class="season-fruit-tag">草莓</span>
+            <span class="season-fruit-tag">枇杷</span>
+            <span class="season-fruit-tag">桑椹</span>
+            <span class="season-fruit-tag">鳳梨</span>
+            <span class="season-fruit-tag">楊桃</span>
+          </div>
+        </div>
+        <div class="season-card">
+          <div class="season-icon">☀️</div>
+          <h3>夏季 (6-8月)</h3>
+          <div class="season-fruits">
+            <span class="season-fruit-tag">芒果</span>
+            <span class="season-fruit-tag">荔枝</span>
+            <span class="season-fruit-tag">龍眼</span>
+            <span class="season-fruit-tag">西瓜</span>
+            <span class="season-fruit-tag">葡萄</span>
+            <span class="season-fruit-tag">百香果</span>
+          </div>
+        </div>
+        <div class="season-card">
+          <div class="season-icon">🍂</div>
+          <h3>秋季 (9-11月)</h3>
+          <div class="season-fruits">
+            <span class="season-fruit-tag">釋迦</span>
+            <span class="season-fruit-tag">柿子</span>
+            <span class="season-fruit-tag">文旦</span>
+            <span class="season-fruit-tag">秋葵</span>
+            <span class="season-fruit-tag">火龍果</span>
+          </div>
+        </div>
+        <div class="season-card">
+          <div class="season-icon">❄️</div>
+          <h3>冬季 (12-2月)</h3>
+          <div class="season-fruits">
+            <span class="season-fruit-tag">蓮霧</span>
+            <span class="season-fruit-tag">草莓</span>
+            <span class="season-fruit-tag">橘子</span>
+            <span class="season-fruit-tag">柚子</span>
+            <span class="season-fruit-tag">鳳梨釋迦</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 保存小貼士 -->
+  <section class="features" style="background: white;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">新鮮更持久</span>
+        <h2>水果保存秘訣</h2>
+        <p>正確保存讓水果新鮮更持久，不浪費每一顆好水果</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card animate-in">
+          <div class="feature-icon">🌡️</div>
+          <h3>溫度是關鍵</h3>
+          <p>熱帶水果如芒果、香蕉不宜放冰箱，低溫會造成寒害；溫帶水果如草莓、葡萄則需冷藏保鮮</p>
+        </div>
+        <div class="feature-card animate-in">
+          <div class="feature-icon">💨</div>
+          <h3>避免密封儲存</h3>
+          <p>水果會釋放乙烯氣體加速熟成，避免與其他蔬果放在密封空間，尤其蘋果是乙烯大戶</p>
+        </div>
+        <div class="feature-card animate-in">
+          <div class="feature-icon">💧</div>
+          <h3>清洗時機</h3>
+          <p>大部分水果應在食用前才清洗，事先清洗會破壞表皮保護層，加速腐壞</p>
+        </div>
+        <div class="feature-card animate-in">
+          <div class="feature-icon">📦</div>
+          <h3>分開存放</h3>
+          <p>受損或過熟的水果會影響周圍，發現有問題的水果要立即取出，避免「一顆壞，全部壞」</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><span class="logo-icon">🍉</span><span class="logo-text">果然甜</span></a>
+          <p>台灣在地新鮮水果，從農場直送到您的餐桌</p>
+          <div class="social-links">
+            <a href="#" class="social-link">📘 Facebook</a>
+            <a href="#" class="social-link">📸 Instagram</a>
+            <a href="#" class="social-link">💬 LINE</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>快速連結</h4>
+          <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="products.html">選購水果</a></li>
+            <li><a href="info.html">水果知識</a></li>
+            <li><a href="about.html">關於我們</a></li>
+            <li><a href="contact.html">聯絡我們</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>服務說明</h4>
+          <ul>
+            <li><a href="#">配送說明</a></li>
+            <li><a href="#">退換貨政策</a></li>
+            <li><a href="#">隱私權政策</a></li>
+            <li><a href="#">常見問題</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>聯絡資訊</h4>
+          <p>📞 (02) 1234-5678</p>
+          <p>📧 hello@guorantian.tw</p>
+          <p>📍 台北市中山區水果路 88 號</p>
+          <p>🕐 週一至週六 09:00-18:00</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 果然甜水果專賣店 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="src/js/data.js"></script>
+  <script src="src/js/cart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+      if (hamburger) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          navMenu.classList.toggle('open');
+        });
+      }
+
+      // Render knowledge cards
+      const grid = document.getElementById('knowledgeGrid');
+      if (grid) {
+        grid.innerHTML = fruitKnowledge.map(k => `
+          <div class="knowledge-card">
+            <div class="knowledge-card-header">
+              <div class="knowledge-emoji">${k.emoji}</div>
+              <div>
+                <h3>${k.title}</h3>
+                <span class="knowledge-category">${k.category}</span>
+              </div>
+            </div>
+            <div class="knowledge-body">
+              <p>${k.content}</p>
+              <div class="knowledge-tips">
+                <h4>實用小撇步</h4>
+                <ul>
+                  ${k.tips.map(t => `<li>${t}</li>`).join('')}
+                </ul>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>
