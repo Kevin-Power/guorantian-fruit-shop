@@ -1,23 +1,23 @@
 /* ========================================
-   果然甜 - 熱帶活潑風格全站樣式
+   果然甜 - 桃子柔和粉橙色調
    ======================================== */
 
 /* CSS Variables */
 :root {
-  --primary: #FF6B35;
-  --primary-dark: #E85A20;
-  --secondary: #FFD23F;
-  --accent: #4CAF50;
-  --tropical: #00B4D8;
-  --pink: #FF4D8D;
-  --bg-light: #fffbf0;
+  --primary: #E8845A;
+  --primary-dark: #C96A42;
+  --secondary: #FFDAB9;
+  --accent: #7BAE84;
+  --tropical: #A8D5C2;
+  --pink: #F2A8B8;
+  --bg-light: #FFF8F4;
   --bg-card: #ffffff;
-  --text-dark: #1a1a1a;
-  --text-mid: #555555;
-  --text-light: #888888;
-  --border: #f0e8d0;
-  --shadow: 0 4px 20px rgba(255, 107, 53, 0.12);
-  --shadow-hover: 0 8px 40px rgba(255, 107, 53, 0.25);
+  --text-dark: #3D2B1F;
+  --text-mid: #6B4E3D;
+  --text-light: #A08070;
+  --border: #F5DDD0;
+  --shadow: 0 4px 20px rgba(232, 132, 90, 0.12);
+  --shadow-hover: 0 8px 40px rgba(232, 132, 90, 0.22);
   --radius: 16px;
   --radius-sm: 8px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -238,7 +238,7 @@ ul { list-style: none; }
 .section-badge {
   display: inline-block;
   padding: 6px 18px;
-  background: linear-gradient(135deg, #FFE0D0, #FFD0B0);
+  background: linear-gradient(135deg, #FFE8DC, #FFCFB8);
   color: var(--primary);
   border-radius: 50px;
   font-size: 0.85rem;
@@ -264,7 +264,7 @@ ul { list-style: none; }
 /* ===== HERO ===== */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 30%, #FFD23F 60%, #FF6B9D 100%);
+  background: linear-gradient(135deg, #E8845A 0%, #F5A882 25%, #FFDAB9 60%, #F2A8B8 100%);
   display: flex;
   align-items: center;
   position: relative;
@@ -514,7 +514,7 @@ ul { list-style: none; }
 /* ===== PRODUCTS SECTION ===== */
 .popular {
   padding: 100px 0;
-  background: #fff8f0;
+  background: #FFF3EE;
 }
 
 .products-grid {
@@ -549,7 +549,7 @@ ul { list-style: none; }
 
 .product-emoji-wrap {
   position: relative;
-  background: linear-gradient(135deg, #FFF3E0, #FFE0C0);
+  background: linear-gradient(135deg, #FFF0E8, #FFD8C0);
   height: 160px;
   display: flex;
   align-items: center;
@@ -580,7 +580,7 @@ ul { list-style: none; }
 
 .tag {
   padding: 3px 10px;
-  background: linear-gradient(135deg, #FFE0D0, #FFD0B0);
+  background: linear-gradient(135deg, #FFE8DC, #FFCFB8);
   color: var(--primary);
   border-radius: 50px;
   font-size: 0.75rem;
@@ -682,7 +682,7 @@ ul { list-style: none; }
 /* ===== INFO BANNER ===== */
 .info-banner {
   padding: 80px 0;
-  background: linear-gradient(135deg, #2C7A2C, #4CAF50, #66BB6A);
+  background: linear-gradient(135deg, #7BAE84, #A8CFA0, #C8E6C9);
   position: relative;
   overflow: hidden;
 }
@@ -771,7 +771,7 @@ ul { list-style: none; }
 }
 
 .testimonial-card.featured {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  background: linear-gradient(135deg, #E8845A, #C96A42);
   color: white;
   border: none;
   transform: scale(1.02);
@@ -910,7 +910,7 @@ ul { list-style: none; }
 /* ===== PAGE HERO (Sub Pages) ===== */
 .page-hero {
   padding: 150px 0 80px;
-  background: linear-gradient(135deg, #FF6B35, #FFD23F);
+  background: linear-gradient(135deg, #E8845A, #FFDAB9);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -1160,7 +1160,7 @@ ul { list-style: none; }
 }
 
 .about-visual {
-  background: linear-gradient(135deg, #FFF3E0, #FFE0C0);
+  background: linear-gradient(135deg, #FFF0E8, #FFD8C0);
   border-radius: var(--radius);
   padding: 48px;
   text-align: center;
@@ -1200,7 +1200,7 @@ ul { list-style: none; }
 .value-item h4 { font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
 .value-item p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; margin: 0; }
 
-.team-section { padding: 80px 0; background: #fff8f0; }
+.team-section { padding: 80px 0; background: #FFF3EE; }
 
 .team-grid {
   display: grid;
@@ -1260,7 +1260,7 @@ ul { list-style: none; }
 .contact-item-icon {
   font-size: 1.5rem;
   width: 44px; height: 44px;
-  background: linear-gradient(135deg, #FFE0D0, #FFD0B0);
+  background: linear-gradient(135deg, #FFE8DC, #FFCFB8);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
@@ -1355,7 +1355,7 @@ ul { list-style: none; }
 .knowledge-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
 
 .knowledge-card-header {
-  background: linear-gradient(135deg, #FFF3E0, #FFE0C0);
+  background: linear-gradient(135deg, #FFF0E8, #FFD8C0);
   padding: 24px;
   display: flex;
   align-items: center;
@@ -1405,7 +1405,7 @@ ul { list-style: none; }
 }
 
 /* ===== Season Guide ===== */
-.season-section { padding: 80px 0; background: #fff8f0; }
+.season-section { padding: 80px 0; background: #FFF3EE; }
 
 .season-grid {
   display: grid;
