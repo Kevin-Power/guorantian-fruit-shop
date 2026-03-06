@@ -56,7 +56,7 @@ ul { list-style: none; }
 }
 
 .navbar.scrolled {
-  background: rgba(255, 251, 240, 0.95);
+  background: rgba(255, 248, 244, 0.95);
   backdrop-filter: blur(20px);
   box-shadow: 0 2px 20px rgba(255, 107, 53, 0.1);
   padding: 10px 0;
@@ -1429,7 +1429,7 @@ ul { list-style: none; }
 .season-fruits { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
 .season-fruit-tag {
   padding: 4px 10px;
-  background: #FFF3E0;
+  background: #FFE8DC;
   color: var(--primary);
   border-radius: 50px;
   font-size: 0.8rem;
@@ -1463,6 +1463,40 @@ ul { list-style: none; }
 
 .success-card h2 { font-size: 1.8rem; font-weight: 900; margin-bottom: 12px; }
 .success-card p { color: var(--text-mid); font-size: 1rem; line-height: 1.7; margin-bottom: 28px; }
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+.section-header {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Season card Lishan highlight */
+.season-fruit-tag:has(🍑),
+.season-fruit-tag:has(🍎) {
+  background: linear-gradient(135deg, #FFE8DC, #FFCFB8);
+  font-weight: 700;
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {

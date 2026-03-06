@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>購物車 - 果然甜</title>
+  <meta name="description" content="果然甜購物車 — 確認您選購的梨山高山水果，享受產地直送的甜蜜。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍑</text></svg>">
   <link rel="stylesheet" href="src/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
@@ -12,7 +14,7 @@
   <nav class="navbar scrolled" id="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">
-        <span class="logo-icon">🍉</span>
+        <span class="logo-icon">🍑</span>
         <span class="logo-text">果然甜</span>
       </a>
       <ul class="nav-menu" id="navMenu">
@@ -69,8 +71,8 @@
             <span id="shipping">NT$ 120</span>
           </div>
           <div class="summary-row" id="freeShippingRow" style="display:none;">
-            <span style="color: #4CAF50;">免運費優惠</span>
-            <span style="color: #4CAF50;">- NT$ 120</span>
+            <span style="color: #7BAE84;">免運費優惠</span>
+            <span style="color: #7BAE84;">- NT$ 120</span>
           </div>
           <div class="summary-row total">
             <span>訂單總計</span>
@@ -103,8 +105,8 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="nav-logo"><span class="logo-icon">🍉</span><span class="logo-text">果然甜</span></a>
-          <p>台灣在地新鮮水果，從農場直送到您的餐桌</p>
+          <a href="index.html" class="nav-logo"><span class="logo-icon">🍑</span><span class="logo-text">果然甜</span></a>
+          <p>梨山高山水果專家，<br>海拔2000公尺的甜蜜直送到您的餐桌</p>
           <div class="social-links">
             <a href="#" class="social-link">📘 Facebook</a>
             <a href="#" class="social-link">📸 Instagram</a>
@@ -214,13 +216,13 @@
       const hint = document.getElementById('freeShippingHint');
       if (isFreeShipping) {
         hint.textContent = '🎉 恭喜！您已達到免運門檻';
-        hint.style.background = '#E8F5E9';
-        hint.style.color = '#2E7D32';
+        hint.style.background = '#EDF5EE';
+        hint.style.color = '#7BAE84';
       } else {
         const diff = FREE_SHIPPING_THRESHOLD - subtotal;
         hint.textContent = `再消費 NT$ ${diff} 即可享免運費`;
-        hint.style.background = '#FFF3E0';
-        hint.style.color = '#E65100';
+        hint.style.background = '#FFF8F4';
+        hint.style.color = '#E8845A';
       }
     }
 
@@ -272,7 +274,7 @@
               <div class="success-icon">🎉</div>
               <h2>訂單成立成功！</h2>
               <p>感謝您在果然甜選購！<br>我們已收到您的訂單，將於 1-2 個工作天內安排出貨。<br>配送時間約 1-3 天，新鮮水果即將送到您手中！</p>
-              <div style="background: #FFF3E0; border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: left;">
+              <div style="background: #FFF8F4; border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: left;">
                 <div style="font-weight: 700; margin-bottom: 8px;">訂單資訊</div>
                 <div style="font-size: 0.9rem; color: #555; line-height: 1.8;">
                   訂單編號：GRT-${Date.now().toString().slice(-6)}<br>

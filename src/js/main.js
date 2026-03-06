@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     homeProducts.innerHTML = topFruits.map(f => createProductCard(f)).join('');
   }
 
-  // 滾動動畫
+  // 滾動動畫 - animate-in for cards
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -38,5 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.feature-card, .product-card, .testimonial-card').forEach(el => {
     observer.observe(el);
+  });
+
+  // 滾動動畫 - fade-up for generic elements
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.section-header, .fade-up').forEach(el => {
+    fadeObserver.observe(el);
   });
 });
