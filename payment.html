@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>匯款回報 - 果然甜</title>
+  <meta name="description" content="果然甜匯款回報頁面 — 完成匯款後請在此填寫匯款資訊，方便我們快速核對出貨。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍑</text></svg>">
+  <link rel="stylesheet" href="src/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">🍑</span>
+        <span class="logo-text">果然甜</span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">首頁</a></li>
+        <li><a href="products.html" class="nav-link">選購水果</a></li>
+        <li><a href="info.html" class="nav-link">水果知識</a></li>
+        <li><a href="about.html" class="nav-link">關於我們</a></li>
+        <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="cart.html" class="cart-btn" id="cartBtn">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <span class="section-badge" style="background:rgba(255,255,255,0.25);color:white;">匯款確認</span>
+      <h1>匯款回報</h1>
+      <p>完成匯款後請填寫以下資訊，我們將盡速為您核對並安排出貨</p>
+    </div>
+    <div class="page-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#FFF8F4"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- 匯款資訊 -->
+        <div>
+          <div class="contact-info-card" style="margin-bottom: 24px;">
+            <h2>匯款帳號資訊</h2>
+            <p>請將訂單金額匯入以下帳戶</p>
+
+            <div style="background:linear-gradient(135deg,#3D2B1F,#6B4E3D);border-radius:12px;padding:24px;color:white;margin-top:20px;">
+              <div style="font-size:0.95rem;line-height:2.2;">
+                <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:6px;margin-bottom:6px;">
+                  <span style="color:rgba(255,255,255,0.7);">銀行名稱</span>
+                  <span style="font-weight:700;">中國信託商業銀行 (822)</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:6px;margin-bottom:6px;">
+                  <span style="color:rgba(255,255,255,0.7);">分行</span>
+                  <span style="font-weight:700;">梨山分行</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:6px;margin-bottom:6px;">
+                  <span style="color:rgba(255,255,255,0.7);">帳號</span>
+                  <span style="font-weight:700;letter-spacing:1px;">0000-1234-5678-9012</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;">
+                  <span style="color:rgba(255,255,255,0.7);">戶名</span>
+                  <span style="font-weight:700;">果然甜有限公司</span>
+                </div>
+              </div>
+              <div style="margin-top:12px;padding:10px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:0.82rem;color:rgba(255,255,255,0.8);line-height:1.5;">
+                ⚠️ 以上為示範帳號，實際帳號請依店家通知為準
+              </div>
+            </div>
+          </div>
+
+          <!-- 注意事項 -->
+          <div class="contact-info-card">
+            <h2 style="margin-bottom: 12px;">注意事項</h2>
+            <div style="font-size:0.9rem;color:#6B4E3D;line-height:1.8;">
+              <p style="margin-bottom:12px;">1. 請於下單後 <strong>3 天內</strong> 完成匯款，逾期訂單將自動取消。</p>
+              <p style="margin-bottom:12px;">2. 匯款後請填寫右方回報表單，提供帳號末五碼方便我們快速核對。</p>
+              <p style="margin-bottom:12px;">3. 確認收到款項後，我們將於 <strong>1-2 個工作天</strong> 安排出貨並通知您。</p>
+              <p>4. 如有任何問題，歡迎 LINE 我們 <strong>@guorantian</strong> 或來電 <strong>(02) 1234-5678</strong>。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 匯款回報表單 -->
+        <div class="contact-form-card">
+          <h2>填寫匯款資訊</h2>
+          <p style="color:#A08070;font-size:0.9rem;margin-bottom:24px;">請於匯款完成後填寫以下資料</p>
+          <form id="paymentForm">
+            <div class="form-group" style="margin-bottom:20px;">
+              <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:8px;">訂單編號 *</label>
+              <input type="text" id="payOrderNo" placeholder="GRT-XXXXXXXX" required
+                style="width:100%;padding:12px 16px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;font-family:inherit;">
+              <div id="orderPreview" style="display:none;margin-top:12px;padding:12px;background:#FFF8F4;border-radius:8px;font-size:0.85rem;color:#6B4E3D;line-height:1.7;"></div>
+            </div>
+            <div class="form-group" style="margin-bottom:20px;">
+              <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:8px;">匯款人姓名 *</label>
+              <input type="text" id="payName" placeholder="請輸入匯款人姓名" required
+                style="width:100%;padding:12px 16px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;">
+            </div>
+            <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div class="form-group" style="margin-bottom:20px;">
+                <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:8px;">帳號末五碼 *</label>
+                <input type="text" id="payLast5" placeholder="12345" maxlength="5" pattern="[0-9]{5}" required
+                  style="width:100%;padding:12px 16px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;letter-spacing:2px;font-weight:700;">
+              </div>
+              <div class="form-group" style="margin-bottom:20px;">
+                <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:8px;">匯款金額 *</label>
+                <input type="number" id="payAmount" placeholder="例如 850" required
+                  style="width:100%;padding:12px 16px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;">
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:20px;">
+              <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:8px;">匯款日期 *</label>
+              <input type="date" id="payDate" required
+                style="width:100%;padding:12px 16px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;font-family:inherit;">
+            </div>
+            <div class="form-group" style="margin-bottom:20px;">
+              <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:8px;">匯款銀行（選填）</label>
+              <input type="text" id="payBank" placeholder="例如：台灣銀行、郵局"
+                style="width:100%;padding:12px 16px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;">
+            </div>
+            <div class="form-group" style="margin-bottom:20px;">
+              <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:8px;">備註（選填）</label>
+              <textarea id="payNote" placeholder="如有其他說明請在此填寫"
+                style="width:100%;padding:12px 16px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;min-height:60px;resize:vertical;font-family:inherit;"></textarea>
+            </div>
+            <button type="submit" class="form-submit" style="width:100%;padding:16px;background:linear-gradient(135deg,#E8845A,#C96A42);color:white;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;">
+              送出匯款回報
+            </button>
+          </form>
+          <div id="paySuccess" style="display:none;text-align:center;padding:40px 20px;">
+            <div style="font-size:3.5rem;margin-bottom:16px;">✅</div>
+            <h3 style="font-size:1.3rem;font-weight:800;margin-bottom:8px;">匯款回報已送出！</h3>
+            <p style="color:#666;line-height:1.7;">我們將在 1 個工作天內核對您的匯款資訊。<br>確認後會立即安排出貨並通知您。<br><br>如有急件，也歡迎直接 LINE 我們 @guorantian。</p>
+            <div id="paySuccessInfo" style="margin-top:20px;padding:16px;background:#FFF8F4;border-radius:12px;text-align:left;font-size:0.9rem;color:#6B4E3D;line-height:1.8;"></div>
+            <a href="index.html" class="btn btn-primary" style="margin-top:20px;">回到首頁</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><span class="logo-icon">🍑</span><span class="logo-text">果然甜</span></a>
+          <p>梨山高山水果專家，<br>海拔2000公尺的甜蜜直送到您的餐桌</p>
+          <div class="social-links">
+            <a href="#" class="social-link">📘 Facebook</a>
+            <a href="#" class="social-link">📸 Instagram</a>
+            <a href="#" class="social-link">💬 LINE</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>快速連結</h4>
+          <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="products.html">選購水果</a></li>
+            <li><a href="info.html">水果知識</a></li>
+            <li><a href="about.html">關於我們</a></li>
+            <li><a href="contact.html">聯絡我們</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>服務說明</h4>
+          <ul>
+            <li><a href="#">配送說明</a></li>
+            <li><a href="#">退換貨政策</a></li>
+            <li><a href="#">隱私權政策</a></li>
+            <li><a href="#">常見問題</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>聯絡資訊</h4>
+          <p>📞 (02) 1234-5678</p>
+          <p>📧 hello@guorantian.tw</p>
+          <p>📍 台北市中山區水果路 88 號</p>
+          <p>🕐 週一至週六 09:00-18:00</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 果然甜水果專賣店 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="src/js/data.js"></script>
+  <script src="src/js/cart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+      if (hamburger) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          navMenu.classList.toggle('open');
+        });
+      }
+
+      // Pre-fill order number from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const orderNo = urlParams.get('order');
+      if (orderNo) {
+        document.getElementById('payOrderNo').value = orderNo;
+        showOrderPreview(orderNo);
+      }
+
+      // Set default date to today
+      document.getElementById('payDate').valueAsDate = new Date();
+
+      // Order number lookup on blur
+      document.getElementById('payOrderNo').addEventListener('blur', function() {
+        showOrderPreview(this.value);
+      });
+
+      // Form submit
+      document.getElementById('paymentForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        submitPayment();
+      });
+    });
+
+    function showOrderPreview(orderNo) {
+      const preview = document.getElementById('orderPreview');
+      const orders = JSON.parse(localStorage.getItem('grt_orders') || '[]');
+      const order = orders.find(o => o.orderNo === orderNo);
+
+      if (order) {
+        preview.style.display = 'block';
+        preview.innerHTML = `
+          <div style="font-weight:700;margin-bottom:6px;color:#E8845A;">找到訂單</div>
+          收件人：${order.customer.name}<br>
+          訂單金額：<strong>NT$ ${order.total.toLocaleString()}</strong><br>
+          商品：${order.items.map(i => i.emoji + ' ' + i.name).join('、')}<br>
+          狀態：${getStatusText(order.paymentStatus)}
+        `;
+        // Auto-fill amount
+        document.getElementById('payAmount').value = order.total;
+      } else if (orderNo.length >= 6) {
+        preview.style.display = 'block';
+        preview.innerHTML = '<span style="color:#E8845A;">找不到此訂單編號，請確認是否正確</span>';
+      } else {
+        preview.style.display = 'none';
+      }
+    }
+
+    function getStatusText(status) {
+      const map = {
+        'pending': '<span style="color:#E8845A;font-weight:700;">待匯款</span>',
+        'reported': '<span style="color:#D4A017;font-weight:700;">已回報，待確認</span>',
+        'confirmed': '<span style="color:#7BAE84;font-weight:700;">已確認，準備出貨</span>'
+      };
+      return map[status] || status;
+    }
+
+    function submitPayment() {
+      const orderNo = document.getElementById('payOrderNo').value.trim();
+      const paymentInfo = {
+        name: document.getElementById('payName').value.trim(),
+        last5: document.getElementById('payLast5').value.trim(),
+        amount: parseInt(document.getElementById('payAmount').value),
+        date: document.getElementById('payDate').value,
+        bank: document.getElementById('payBank').value.trim(),
+        note: document.getElementById('payNote').value.trim(),
+        reportedAt: new Date().toISOString()
+      };
+
+      // Update order in localStorage
+      const orders = JSON.parse(localStorage.getItem('grt_orders') || '[]');
+      const order = orders.find(o => o.orderNo === orderNo);
+
+      if (order) {
+        order.paymentStatus = 'reported';
+        order.paymentInfo = paymentInfo;
+        localStorage.setItem('grt_orders', JSON.stringify(orders));
+      }
+
+      // Also save to a separate payment reports list (for admin)
+      const reports = JSON.parse(localStorage.getItem('grt_payment_reports') || '[]');
+      reports.push({
+        orderNo: orderNo,
+        ...paymentInfo
+      });
+      localStorage.setItem('grt_payment_reports', JSON.stringify(reports));
+
+      // Show success
+      document.getElementById('paymentForm').style.display = 'none';
+      document.getElementById('paySuccess').style.display = 'block';
+      document.getElementById('paySuccessInfo').innerHTML = `
+        訂單編號：<strong>${orderNo}</strong><br>
+        匯款人：${paymentInfo.name}<br>
+        帳號末五碼：${paymentInfo.last5}<br>
+        匯款金額：NT$ ${paymentInfo.amount.toLocaleString()}<br>
+        匯款日期：${paymentInfo.date}
+      `;
+    }
+  </script>
+</body>
+</html>

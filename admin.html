@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>訂單管理 - 果然甜後台</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍑</text></svg>">
+  <link rel="stylesheet" href="src/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    .admin-section { padding: 120px 0 80px; min-height: 100vh; }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
+    .admin-header h1 { font-size: 1.8rem; font-weight: 900; }
+    .admin-stats { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+    .admin-stat-card { background: white; border-radius: 12px; padding: 20px 24px; box-shadow: 0 4px 20px rgba(232,132,90,0.12); border: 1px solid #F5DDD0; flex: 1; min-width: 160px; text-align: center; }
+    .admin-stat-num { font-size: 2rem; font-weight: 900; color: #E8845A; }
+    .admin-stat-label { font-size: 0.85rem; color: #A08070; margin-top: 4px; }
+    .admin-filters { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+    .admin-filter-btn { padding: 8px 20px; border-radius: 50px; border: 2px solid #F5DDD0; background: white; color: #6B4E3D; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.3s; }
+    .admin-filter-btn:hover, .admin-filter-btn.active { background: #E8845A; color: white; border-color: #E8845A; }
+    .order-card { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px rgba(232,132,90,0.12); border: 1px solid #F5DDD0; margin-bottom: 16px; transition: all 0.3s; }
+    .order-card:hover { box-shadow: 0 8px 40px rgba(232,132,90,0.22); }
+    .order-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+    .order-no { font-weight: 800; font-size: 1.05rem; color: #3D2B1F; }
+    .order-date { font-size: 0.85rem; color: #A08070; }
+    .status-badge { padding: 4px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
+    .status-pending { background: #FFF3E0; color: #E65100; }
+    .status-reported { background: #FFF8E1; color: #F57F17; }
+    .status-confirmed { background: #E8F5E9; color: #2E7D32; }
+    .order-body { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .order-info-block h4 { font-size: 0.8rem; color: #A08070; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .order-info-block p { font-size: 0.9rem; color: #3D2B1F; line-height: 1.7; margin: 0; }
+    .order-items { margin-top: 16px; padding-top: 16px; border-top: 1px solid #F5DDD0; }
+    .order-item-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 0.88rem; color: #6B4E3D; }
+    .order-total-row { display: flex; justify-content: space-between; padding: 8px 0 0; font-size: 1.1rem; font-weight: 800; color: #E8845A; border-top: 2px solid #F5DDD0; margin-top: 8px; }
+    .order-actions { display: flex; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid #F5DDD0; }
+    .order-action-btn { padding: 8px 20px; border-radius: 50px; border: none; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.3s; }
+    .btn-confirm { background: #7BAE84; color: white; }
+    .btn-confirm:hover { background: #5a9a5a; }
+    .btn-delete { background: #f5f5f5; color: #888; }
+    .btn-delete:hover { background: #ff4d4d; color: white; }
+    .payment-detail { margin-top: 12px; padding: 12px; background: #FFF8F4; border-radius: 8px; font-size: 0.85rem; color: #6B4E3D; line-height: 1.7; }
+    .empty-orders { text-align: center; padding: 80px 20px; }
+    .empty-orders h3 { font-size: 1.3rem; margin-bottom: 8px; }
+    @media (max-width: 768px) {
+      .order-body { grid-template-columns: 1fr; }
+      .admin-stats { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">🍑</span>
+        <span class="logo-text">果然甜</span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">首頁</a></li>
+        <li><a href="products.html" class="nav-link">選購水果</a></li>
+        <li><a href="info.html" class="nav-link">水果知識</a></li>
+        <li><a href="about.html" class="nav-link">關於我們</a></li>
+        <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="cart.html" class="cart-btn" id="cartBtn">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="admin-section">
+    <div class="container">
+      <div class="admin-header">
+        <div>
+          <h1>📋 訂單管理後台</h1>
+          <p style="color:#A08070;font-size:0.9rem;">查看所有訂單與匯款狀態</p>
+        </div>
+        <button onclick="exportOrders()" class="btn btn-secondary" style="padding:10px 24px;font-size:0.9rem;">📥 匯出訂單</button>
+      </div>
+
+      <!-- Stats -->
+      <div class="admin-stats" id="adminStats"></div>
+
+      <!-- Filters -->
+      <div class="admin-filters">
+        <button class="admin-filter-btn active" data-filter="all">全部訂單</button>
+        <button class="admin-filter-btn" data-filter="pending">待匯款</button>
+        <button class="admin-filter-btn" data-filter="reported">已回報待確認</button>
+        <button class="admin-filter-btn" data-filter="confirmed">已確認</button>
+      </div>
+
+      <!-- Orders -->
+      <div id="ordersContainer"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><span class="logo-icon">🍑</span><span class="logo-text">果然甜</span></a>
+          <p>梨山高山水果專家，<br>海拔2000公尺的甜蜜直送到您的餐桌</p>
+        </div>
+        <div class="footer-contact">
+          <h4>後台管理</h4>
+          <p style="font-size:0.85rem;color:#888;">此頁面僅供店主管理使用</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 果然甜水果專賣店 版權所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="src/js/data.js"></script>
+  <script src="src/js/cart.js"></script>
+  <script>
+    let currentFilter = 'all';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+      if (hamburger) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          navMenu.classList.toggle('open');
+        });
+      }
+
+      // Filter buttons
+      document.querySelectorAll('.admin-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.admin-filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.dataset.filter;
+          renderOrders();
+        });
+      });
+
+      renderStats();
+      renderOrders();
+    });
+
+    function getOrders() {
+      return JSON.parse(localStorage.getItem('grt_orders') || '[]').sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+
+    function renderStats() {
+      const orders = getOrders();
+      const pending = orders.filter(o => o.paymentStatus === 'pending').length;
+      const reported = orders.filter(o => o.paymentStatus === 'reported').length;
+      const confirmed = orders.filter(o => o.paymentStatus === 'confirmed').length;
+      const totalRevenue = orders.filter(o => o.paymentStatus === 'confirmed').reduce((s, o) => s + o.total, 0);
+
+      document.getElementById('adminStats').innerHTML = `
+        <div class="admin-stat-card">
+          <div class="admin-stat-num">${orders.length}</div>
+          <div class="admin-stat-label">總訂單數</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-num" style="color:#E65100;">${pending}</div>
+          <div class="admin-stat-label">待匯款</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-num" style="color:#F57F17;">${reported}</div>
+          <div class="admin-stat-label">已回報待確認</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-num" style="color:#2E7D32;">${confirmed}</div>
+          <div class="admin-stat-label">已確認</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-num" style="font-size:1.4rem;">NT$ ${totalRevenue.toLocaleString()}</div>
+          <div class="admin-stat-label">已確認營收</div>
+        </div>
+      `;
+    }
+
+    function renderOrders() {
+      const container = document.getElementById('ordersContainer');
+      let orders = getOrders();
+
+      if (currentFilter !== 'all') {
+        orders = orders.filter(o => o.paymentStatus === currentFilter);
+      }
+
+      if (orders.length === 0) {
+        container.innerHTML = `
+          <div class="empty-orders">
+            <div style="font-size:4rem;margin-bottom:16px;">📭</div>
+            <h3>沒有${currentFilter === 'all' ? '' : '符合條件的'}訂單</h3>
+            <p style="color:#888;">目前尚無訂單記錄</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = orders.map(order => {
+        const orderDate = new Date(order.date);
+        const dateStr = `${orderDate.getFullYear()}/${orderDate.getMonth()+1}/${orderDate.getDate()} ${orderDate.getHours().toString().padStart(2,'0')}:${orderDate.getMinutes().toString().padStart(2,'0')}`;
+        const statusClass = `status-${order.paymentStatus}`;
+        const statusText = { pending: '待匯款', reported: '已回報待確認', confirmed: '已確認' }[order.paymentStatus];
+
+        return `
+          <div class="order-card">
+            <div class="order-top">
+              <div>
+                <span class="order-no">${order.orderNo}</span>
+                <span class="order-date" style="margin-left:12px;">${dateStr}</span>
+              </div>
+              <span class="status-badge ${statusClass}">${statusText}</span>
+            </div>
+            <div class="order-body">
+              <div class="order-info-block">
+                <h4>收件資訊</h4>
+                <p>
+                  ${order.customer.name}<br>
+                  ${order.customer.phone}<br>
+                  ${order.customer.email}<br>
+                  ${order.customer.address}
+                  ${order.customer.note ? '<br><em style="color:#A08070;">備註：' + order.customer.note + '</em>' : ''}
+                </p>
+              </div>
+              <div class="order-info-block">
+                <h4>匯款資訊</h4>
+                ${order.paymentInfo ? `
+                  <div class="payment-detail">
+                    匯款人：<strong>${order.paymentInfo.name}</strong><br>
+                    帳號末五碼：<strong style="letter-spacing:1px;">${order.paymentInfo.last5}</strong><br>
+                    匯款金額：<strong>NT$ ${order.paymentInfo.amount.toLocaleString()}</strong>
+                    ${order.paymentInfo.amount !== order.total ? '<span style="color:#ff4d4d;font-weight:700;"> (金額不符！應為 NT$ ' + order.total.toLocaleString() + ')</span>' : '<span style="color:#7BAE84;"> ✓</span>'}<br>
+                    匯款日期：${order.paymentInfo.date}<br>
+                    ${order.paymentInfo.bank ? '匯款銀行：' + order.paymentInfo.bank + '<br>' : ''}
+                    ${order.paymentInfo.note ? '備註：' + order.paymentInfo.note : ''}
+                  </div>
+                ` : '<p style="color:#A08070;">尚未回報匯款</p>'}
+              </div>
+            </div>
+            <div class="order-items">
+              ${order.items.map(i => `
+                <div class="order-item-row">
+                  <span>${i.emoji} ${i.name} x${i.quantity}</span>
+                  <span>NT$ ${(i.price * i.quantity).toLocaleString()}</span>
+                </div>
+              `).join('')}
+              <div class="order-item-row" style="font-size:0.82rem;color:#A08070;">
+                <span>運費</span>
+                <span>${order.shipping === 0 ? '免運費' : 'NT$ ' + order.shipping}</span>
+              </div>
+              <div class="order-total-row">
+                <span>訂單總計</span>
+                <span>NT$ ${order.total.toLocaleString()}</span>
+              </div>
+            </div>
+            <div class="order-actions">
+              ${order.paymentStatus === 'reported' ? `<button class="order-action-btn btn-confirm" onclick="confirmOrder('${order.orderNo}')">✓ 確認匯款</button>` : ''}
+              ${order.paymentStatus === 'pending' ? `<button class="order-action-btn btn-confirm" onclick="confirmOrder('${order.orderNo}')">✓ 手動確認</button>` : ''}
+              ${order.paymentStatus === 'confirmed' ? `<span style="color:#7BAE84;font-weight:700;font-size:0.9rem;">✅ 已確認</span>` : ''}
+              <button class="order-action-btn btn-delete" onclick="deleteOrder('${order.orderNo}')">刪除</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function confirmOrder(orderNo) {
+      if (!confirm(`確認已收到訂單 ${orderNo} 的匯款？`)) return;
+      const orders = getOrders();
+      const order = orders.find(o => o.orderNo === orderNo);
+      if (order) {
+        order.paymentStatus = 'confirmed';
+        localStorage.setItem('grt_orders', JSON.stringify(orders));
+        renderStats();
+        renderOrders();
+      }
+    }
+
+    function deleteOrder(orderNo) {
+      if (!confirm(`確定要刪除訂單 ${orderNo}？此操作無法復原。`)) return;
+      let orders = getOrders();
+      orders = orders.filter(o => o.orderNo !== orderNo);
+      localStorage.setItem('grt_orders', JSON.stringify(orders));
+      renderStats();
+      renderOrders();
+    }
+
+    function exportOrders() {
+      const orders = getOrders();
+      if (orders.length === 0) { alert('目前沒有訂單可匯出'); return; }
+
+      let csv = '訂單編號,日期,收件人,電話,Email,地址,備註,商品明細,小計,運費,總計,匯款狀態,匯款人,帳號末五碼,匯款金額,匯款日期\n';
+      orders.forEach(o => {
+        const items = o.items.map(i => i.name + ' x' + i.quantity).join('; ');
+        const pi = o.paymentInfo || {};
+        csv += `"${o.orderNo}","${new Date(o.date).toLocaleDateString()}","${o.customer.name}","${o.customer.phone}","${o.customer.email}","${o.customer.address}","${o.customer.note || ''}","${items}",${o.subtotal},${o.shipping},${o.total},"${o.paymentStatus}","${pi.name || ''}","${pi.last5 || ''}",${pi.amount || ''},"${pi.date || ''}"\n`;
+      });
+
+      const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `果然甜訂單_${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>

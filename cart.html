@@ -79,8 +79,8 @@
             <span class="price" id="totalAmount">NT$ 0</span>
           </div>
           <div id="freeShippingHint" style="font-size:0.82rem;color:#888;text-align:center;margin-top:8px;padding:8px;background:#f5f5f5;border-radius:8px;"></div>
-          <button class="checkout-btn" onclick="handleCheckout()">
-            🎉 立即結帳
+          <button class="checkout-btn" onclick="showCheckoutForm()">
+            🎉 前往結帳
           </button>
           <a href="products.html" style="display:block;text-align:center;margin-top:12px;font-size:0.9rem;color:#888;">
             ← 繼續選購
@@ -259,36 +259,178 @@
       }
     }
 
-    function handleCheckout() {
+    // ===== 結帳流程 =====
+    function showCheckoutForm() {
       if (Cart.items.length === 0) return;
-
-      const total = Cart.getTotal();
-      const shipping = total >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
-
-      Cart.clear();
+      const subtotal = Cart.getTotal();
+      const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
+      const total = subtotal + shipping;
 
       document.querySelector('.cart-section').innerHTML = `
         <div class="container">
-          <div class="success-section" style="padding: 60px 0; min-height: auto;">
-            <div class="success-card">
-              <div class="success-icon">🎉</div>
-              <h2>訂單成立成功！</h2>
-              <p>感謝您在果然甜選購！<br>我們已收到您的訂單，將於 1-2 個工作天內安排出貨。<br>配送時間約 1-3 天，新鮮水果即將送到您手中！</p>
-              <div style="background: #FFF8F4; border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: left;">
-                <div style="font-weight: 700; margin-bottom: 8px;">訂單資訊</div>
-                <div style="font-size: 0.9rem; color: #555; line-height: 1.8;">
-                  訂單編號：GRT-${Date.now().toString().slice(-6)}<br>
-                  訂單金額：NT$ ${(total + shipping).toLocaleString()}<br>
-                  預計到貨：${getDeliveryDate()}
+          <div style="margin-bottom: 32px;">
+            <h1 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 8px;">📝 填寫收件資訊</h1>
+            <p style="color: #888;">請填寫以下資料，我們將盡速為您安排出貨</p>
+          </div>
+          <div class="cart-layout">
+            <div class="cart-items-container">
+              <form id="checkoutForm">
+                <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                  <div class="form-group">
+                    <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:8px;">收件人姓名 *</label>
+                    <input type="text" id="coName" placeholder="請輸入真實姓名" required style="width:100%;padding:12px 16px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;">
+                  </div>
+                  <div class="form-group">
+                    <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:8px;">聯絡電話 *</label>
+                    <input type="tel" id="coPhone" placeholder="0912-345-678" required style="width:100%;padding:12px 16px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;">
+                  </div>
+                </div>
+                <div class="form-group" style="margin-bottom:20px;">
+                  <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:8px;">電子郵件 *</label>
+                  <input type="email" id="coEmail" placeholder="example@email.com" required style="width:100%;padding:12px 16px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;">
+                </div>
+                <div class="form-group" style="margin-bottom:20px;">
+                  <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:8px;">收件地址 *</label>
+                  <input type="text" id="coAddress" placeholder="請輸入完整收件地址" required style="width:100%;padding:12px 16px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;">
+                </div>
+                <div class="form-group" style="margin-bottom:20px;">
+                  <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:8px;">備註（選填）</label>
+                  <textarea id="coNote" placeholder="如有特殊需求請在此說明（如指定到貨日期、送禮需求等）" style="width:100%;padding:12px 16px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;min-height:80px;resize:vertical;font-family:inherit;"></textarea>
+                </div>
+                <button type="submit" class="checkout-btn" style="width:100%;margin-top:8px;padding:16px;background:linear-gradient(135deg,#E8845A,#C96A42);color:white;border:none;border-radius:8px;font-size:1.1rem;font-weight:700;cursor:pointer;">
+                  確認送出訂單
+                </button>
+              </form>
+            </div>
+            <div class="cart-summary">
+              <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:20px;padding-bottom:16px;border-bottom:2px solid #F5DDD0;">訂單摘要</h3>
+              ${Cart.items.map(item => `
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:0.9rem;">
+                  <span>${item.emoji} ${item.name} x${item.quantity}</span>
+                  <span style="font-weight:700;">NT$ ${(item.price * item.quantity).toLocaleString()}</span>
+                </div>
+              `).join('')}
+              <div style="border-top:1px solid #F5DDD0;margin-top:12px;padding-top:12px;">
+                <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:0.9rem;">
+                  <span>商品小計</span><span>NT$ ${subtotal.toLocaleString()}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:0.9rem;">
+                  <span>運費</span><span>${shipping === 0 ? '<span style="color:#7BAE84;">免運費</span>' : 'NT$ ' + shipping}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:12px 0 0;font-size:1.2rem;font-weight:900;border-top:2px solid #F5DDD0;margin-top:8px;color:#E8845A;">
+                  <span>應付金額</span><span>NT$ ${total.toLocaleString()}</span>
                 </div>
               </div>
-              <a href="products.html" class="btn btn-primary" style="display: inline-flex;">繼續選購水果</a>
+              <div style="margin-top:16px;padding:12px;background:#FFF8F4;border-radius:8px;font-size:0.82rem;color:#6B4E3D;line-height:1.6;">
+                💡 送出訂單後，系統會顯示匯款帳號資訊。<br>完成匯款後請至「匯款回報」頁面填寫匯款資料，我們確認後即安排出貨。
+              </div>
             </div>
           </div>
         </div>
       `;
-
       document.querySelector('.popular').style.display = 'none';
+
+      document.getElementById('checkoutForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        submitOrder(total, shipping, subtotal);
+      });
+    }
+
+    function submitOrder(total, shipping, subtotal) {
+      const orderNo = 'GRT-' + Date.now().toString().slice(-8);
+      const order = {
+        orderNo: orderNo,
+        date: new Date().toISOString(),
+        customer: {
+          name: document.getElementById('coName').value,
+          phone: document.getElementById('coPhone').value,
+          email: document.getElementById('coEmail').value,
+          address: document.getElementById('coAddress').value,
+          note: document.getElementById('coNote').value
+        },
+        items: Cart.items.map(i => ({
+          id: i.id, name: i.name, emoji: i.emoji,
+          price: i.price, unit: i.unit, quantity: i.quantity
+        })),
+        subtotal: subtotal,
+        shipping: shipping,
+        total: total,
+        paymentStatus: 'pending', // pending, reported, confirmed
+        paymentInfo: null
+      };
+
+      // Save to localStorage orders list
+      const orders = JSON.parse(localStorage.getItem('grt_orders') || '[]');
+      orders.push(order);
+      localStorage.setItem('grt_orders', JSON.stringify(orders));
+
+      Cart.clear();
+      showOrderSuccess(order);
+    }
+
+    function showOrderSuccess(order) {
+      const deliveryDate = getDeliveryDate();
+      document.querySelector('.cart-section').innerHTML = `
+        <div class="container">
+          <div class="success-section" style="padding: 40px 0; min-height: auto;">
+            <div class="success-card" style="max-width:600px;">
+              <div class="success-icon">🎉</div>
+              <h2>訂單成立成功！</h2>
+              <p style="margin-bottom:20px;">感謝您在果然甜選購！請於 <strong>3 天內</strong> 完成匯款，我們確認後將盡速安排出貨。</p>
+
+              <div style="background:#FFF8F4;border-radius:12px;padding:20px;margin-bottom:20px;text-align:left;">
+                <div style="font-weight:800;font-size:1rem;margin-bottom:12px;color:#E8845A;">📋 訂單資訊</div>
+                <div style="font-size:0.9rem;color:#555;line-height:2;">
+                  訂單編號：<strong>${order.orderNo}</strong><br>
+                  收件人：${order.customer.name}<br>
+                  聯絡電話：${order.customer.phone}<br>
+                  收件地址：${order.customer.address}<br>
+                  訂單金額：<strong style="color:#E8845A;font-size:1.1rem;">NT$ ${order.total.toLocaleString()}</strong><br>
+                  預計到貨：確認匯款後 1-3 個工作天
+                </div>
+              </div>
+
+              <div style="background:linear-gradient(135deg,#3D2B1F,#6B4E3D);border-radius:12px;padding:24px;margin-bottom:20px;text-align:left;color:white;">
+                <div style="font-weight:800;font-size:1rem;margin-bottom:12px;">🏦 匯款資訊</div>
+                <div style="font-size:0.95rem;line-height:2.2;">
+                  <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:6px;margin-bottom:6px;">
+                    <span style="color:rgba(255,255,255,0.7);">銀行名稱</span>
+                    <span style="font-weight:700;">中國信託商業銀行 (822)</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:6px;margin-bottom:6px;">
+                    <span style="color:rgba(255,255,255,0.7);">分行</span>
+                    <span style="font-weight:700;">梨山分行</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:6px;margin-bottom:6px;">
+                    <span style="color:rgba(255,255,255,0.7);">帳號</span>
+                    <span style="font-weight:700;letter-spacing:1px;">0000-1234-5678-9012</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;">
+                    <span style="color:rgba(255,255,255,0.7);">戶名</span>
+                    <span style="font-weight:700;">果然甜有限公司</span>
+                  </div>
+                </div>
+                <div style="margin-top:12px;padding:10px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:0.82rem;color:rgba(255,255,255,0.8);line-height:1.6;">
+                  ⚠️ 以上為示範帳號，實際帳號請依店家通知為準。<br>
+                  匯款金額：<strong style="color:#FFDAB9;">NT$ ${order.total.toLocaleString()}</strong>
+                </div>
+              </div>
+
+              <div style="background:#EDF5EE;border-radius:12px;padding:16px;margin-bottom:24px;text-align:left;">
+                <div style="font-weight:700;font-size:0.9rem;color:#3a7a3a;margin-bottom:8px;">✅ 匯款完成後請回報</div>
+                <p style="font-size:0.85rem;color:#555;line-height:1.6;margin:0;">
+                  完成匯款後，請前往「<a href="payment.html?order=${order.orderNo}" style="color:#E8845A;font-weight:700;text-decoration:underline;">匯款回報</a>」頁面填寫匯款資訊（帳號末五碼、匯款金額、匯款日期），方便我們快速核對出貨。
+                </p>
+              </div>
+
+              <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+                <a href="payment.html?order=${order.orderNo}" class="btn btn-primary">前往匯款回報</a>
+                <a href="products.html" class="btn btn-secondary">繼續選購水果</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
     }
 
     function getDeliveryDate() {
