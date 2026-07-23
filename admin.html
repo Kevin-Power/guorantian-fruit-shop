@@ -223,8 +223,10 @@
                 <p>
                   ${order.customer.name}<br>
                   ${order.customer.phone}<br>
+                  ${order.customer.lineId ? 'LINE：' + order.customer.lineId + '<br>' : ''}
                   ${order.customer.email}<br>
                   ${order.customer.address}
+                  ${order.customer.guard ? '<br>🏢 警衛室代收：' + order.customer.guard : ''}
                   ${order.customer.note ? '<br><em style="color:#A08070;">備註：' + order.customer.note + '</em>' : ''}
                 </p>
               </div>
@@ -295,11 +297,11 @@
       const orders = getOrders();
       if (orders.length === 0) { alert('目前沒有訂單可匯出'); return; }
 
-      let csv = '訂單編號,日期,收件人,電話,Email,地址,備註,商品明細,小計,運費,總計,匯款狀態,匯款人,帳號末五碼,匯款金額,匯款日期\n';
+      let csv = '訂單編號,日期,收件人,電話,LINE ID,Email,地址,警衛室代收,備註,商品明細,小計,運費,總計,匯款狀態,匯款人,帳號末五碼,匯款金額,匯款日期\n';
       orders.forEach(o => {
         const items = o.items.map(i => i.name + ' x' + i.quantity).join('; ');
         const pi = o.paymentInfo || {};
-        csv += `"${o.orderNo}","${new Date(o.date).toLocaleDateString()}","${o.customer.name}","${o.customer.phone}","${o.customer.email}","${o.customer.address}","${o.customer.note || ''}","${items}",${o.subtotal},${o.shipping},${o.total},"${o.paymentStatus}","${pi.name || ''}","${pi.last5 || ''}",${pi.amount || ''},"${pi.date || ''}"\n`;
+        csv += `"${o.orderNo}","${new Date(o.date).toLocaleDateString()}","${o.customer.name}","${o.customer.phone}","${o.customer.lineId || ''}","${o.customer.email}","${o.customer.address}","${o.customer.guard || ''}","${o.customer.note || ''}","${items}",${o.subtotal},${o.shipping},${o.total},"${o.paymentStatus}","${pi.name || ''}","${pi.last5 || ''}",${pi.amount || ''},"${pi.date || ''}"\n`;
       });
 
       const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });

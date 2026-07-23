@@ -39,7 +39,7 @@ function doPost(e) {
 
 function handleOrder(order) {
   const sheet = getSheet(ORDER_SHEET_NAME, [
-    '登記時間', '訂單編號', '訂購人', '電話', 'Email', '收件地址',
+    '登記時間', '訂單編號', '訂購人', '電話', 'LINE ID', 'Email', '收件地址', '警衛室代收',
     '訂購明細', '總盒數', '商品小計', '冷鏈運費', '訂單總計', '備註', '狀態'
   ]);
   const itemsText = (order.items || [])
@@ -50,7 +50,7 @@ function handleOrder(order) {
   const c = order.customer || {};
 
   sheet.appendRow([
-    new Date(), order.orderNo, c.name, "'" + (c.phone || ''), c.email || '', c.address || '',
+    new Date(), order.orderNo, c.name, "'" + (c.phone || ''), c.lineId || '', c.email || '', c.address || '', c.guard || '',
     itemsText, boxes, order.subtotal, order.shipping, order.total, c.note || '', '待匯款'
   ]);
 
@@ -58,7 +58,9 @@ function handleOrder(order) {
     '🍑 果然甜 新訂單！',
     '訂單編號：' + order.orderNo,
     '訂購人：' + c.name + '（' + c.phone + '）',
+    c.lineId ? 'LINE ID：' + c.lineId : '',
     '地址：' + c.address,
+    '警衛室代收：' + (c.guard || '未填寫'),
     '----------------',
     itemsText,
     '----------------',
@@ -135,7 +137,7 @@ function jsonOutput(obj) {
 function testAppend() {
   handleOrder({
     orderNo: 'GRT-TEST0001',
-    customer: { name: '測試客人', phone: '0912345678', email: 'test@example.com', address: '台北市測試路1號', note: '這是測試訂單' },
+    customer: { name: '測試客人', phone: '0912345678', lineId: 'test_line_id', email: 'test@example.com', address: '台北市測試路1號', guard: '有警衛室可代收', note: '這是測試訂單' },
     items: [{ name: '梨山牛奶水蜜桃 8粒裝', quantity: 2 }],
     subtotal: 1500, shipping: 300, total: 1800
   });
