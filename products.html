@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>選購水果 - 果然甜｜梨山高山水果・台灣在地新鮮直送</title>
-  <meta name="description" content="嚴選梨山高山水果與台灣各地當季水果，水蜜桃、雪梨、甜柿、蜜蘋果，每天新鮮到貨，產地直送到府。">
+  <title>預購水蜜桃 - 果然甜｜梨山上海水蜜桃・全程冷鏈直送</title>
+  <meta name="description" content="梨山上海水蜜桃四種規格：8粒裝750、6粒裝850、5粒裝950、5大裝1100。婆婆爺爺種了一輩子的甜，全程冷鏈直送到府，預購中。">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍑</text></svg>">
   <link rel="stylesheet" href="src/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -19,9 +19,9 @@
       </a>
       <ul class="nav-menu" id="navMenu">
         <li><a href="index.html" class="nav-link">首頁</a></li>
-        <li><a href="products.html" class="nav-link active">選購水果</a></li>
+        <li><a href="products.html" class="nav-link active">選購水蜜桃</a></li>
         <li><a href="index.html#quick-order" class="nav-link nav-cta">🍑 預購水蜜桃</a></li>
-        <li><a href="info.html" class="nav-link">水果知識</a></li>
+        <li><a href="info.html" class="nav-link">水蜜桃知識</a></li>
         <li><a href="about.html" class="nav-link">關於我們</a></li>
         <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
       </ul>
@@ -40,28 +40,14 @@
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container page-hero-content">
-      <span class="section-badge" style="background:rgba(255,255,255,0.25);color:white;">新鮮直送</span>
-      <h1>選購新鮮水果</h1>
-      <p>嚴選台灣各地當季水果，每天新鮮到貨，讓你隨時都能吃到最甜最鮮的好滋味</p>
+      <span class="section-badge" style="background:rgba(255,255,255,0.25);color:white;">2026 預購中</span>
+      <h1>🍑 梨山上海水蜜桃</h1>
+      <p>婆婆跟爺爺種了一輩子的甜，四種規格、全程冷鏈直送。一年只有三週，7/24 起依訂單順序陸續出貨</p>
     </div>
     <div class="page-wave">
       <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg">
         <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#FFF8F4"/>
       </svg>
-    </div>
-  </section>
-
-  <!-- Filter Bar -->
-  <section class="filter-bar">
-    <div class="container">
-      <div class="filter-btns">
-        <button class="filter-btn active" data-filter="all">全部水果</button>
-        <button class="filter-btn" data-filter="梨山高山">🏔️ 梨山高山</button>
-        <button class="filter-btn" data-filter="熱帶水果">🌴 熱帶水果</button>
-        <button class="filter-btn" data-filter="夏季水果">☀️ 夏季水果</button>
-        <button class="filter-btn" data-filter="溫帶水果">🍃 溫帶水果</button>
-        <button class="filter-btn" data-filter="inStock">✅ 有庫存</button>
-      </div>
     </div>
   </section>
 
@@ -90,7 +76,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="nav-logo"><span class="logo-icon">🍑</span><span class="logo-text">果然甜</span></a>
-          <p>梨山高山水果專家，<br>海拔2000公尺的甜蜜直送到您的餐桌</p>
+          <p>梨山水蜜桃專門店，<br>婆婆爺爺一輩子只種好這一顆甜</p>
           <div class="social-links">
             <a href="#" class="social-link">📘 Facebook</a>
             <a href="#" class="social-link">📸 Instagram</a>
@@ -101,8 +87,8 @@
           <h4>快速連結</h4>
           <ul>
             <li><a href="index.html">首頁</a></li>
-            <li><a href="products.html">選購水果</a></li>
-            <li><a href="info.html">水果知識</a></li>
+            <li><a href="products.html">選購水蜜桃</a></li>
+            <li><a href="info.html">水蜜桃知識</a></li>
             <li><a href="about.html">關於我們</a></li>
             <li><a href="contact.html">聯絡我們</a></li>
           </ul>
@@ -144,52 +130,12 @@
         });
       }
 
-      // Check URL for filter parameter (e.g., ?filter=梨山高山)
-      const urlParams = new URLSearchParams(window.location.search);
-      let currentFilter = urlParams.get('filter') || 'all';
-
-      // Activate the correct filter button on load
-      if (currentFilter !== 'all') {
-        document.querySelectorAll('.filter-btn').forEach(b => {
-          b.classList.remove('active');
-          if (b.dataset.filter === currentFilter) b.classList.add('active');
-        });
-      }
-
-      function renderProducts() {
-        const container = document.getElementById('allProducts');
-        const noResults = document.getElementById('noResults');
-        let filtered = fruitsData;
-
-        if (currentFilter === 'inStock') {
-          filtered = fruitsData.filter(f => f.inStock);
-        } else if (currentFilter !== 'all') {
-          filtered = fruitsData.filter(f => f.category === currentFilter);
-        }
-
-        if (filtered.length === 0) {
-          container.innerHTML = '';
-          noResults.style.display = 'block';
-        } else {
-          noResults.style.display = 'none';
-          container.innerHTML = filtered.map(f => createProductCard(f)).join('');
-          // Re-animate
-          setTimeout(() => {
-            document.querySelectorAll('.product-card').forEach(el => el.classList.add('animate-in'));
-          }, 50);
-        }
-      }
-
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentFilter = btn.dataset.filter;
-          renderProducts();
-        });
-      });
-
-      renderProducts();
+      // 只賣水蜜桃：直接渲染全部規格
+      const container = document.getElementById('allProducts');
+      container.innerHTML = fruitsData.map(f => createProductCard(f)).join('');
+      setTimeout(() => {
+        document.querySelectorAll('.product-card').forEach(el => el.classList.add('animate-in'));
+      }, 50);
     });
   </script>
   <!-- LINE 浮動按鈕 -->

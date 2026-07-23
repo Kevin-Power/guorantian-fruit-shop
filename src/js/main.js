@@ -47,13 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join('');
   }
 
-  // 渲染首頁熱銷水果（水蜜桃已在快速訂購區，這裡顯示其他好物）
-  const homeProducts = document.getElementById('homeProducts');
-  if (homeProducts) {
-    const topFruits = fruitsData.filter(f => f.inStock && !f.name.includes('水蜜桃')).slice(0, 4);
-    homeProducts.innerHTML = topFruits.map(f => createProductCard(f)).join('');
-  }
-
   // 滾動動畫 - animate-in for cards
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
