@@ -66,6 +66,7 @@ const Cart = {
       countEl.textContent = count;
       countEl.style.display = count > 0 ? 'flex' : 'none';
     }
+    renderCartBar();
   },
 
   showToast(message) {
@@ -148,6 +149,39 @@ function handleAddToCart(fruitId) {
       btn.classList.remove('added');
     }, 1500);
   }
+}
+
+// 底部快速結帳列（購物車頁自帶摘要，用 body[data-no-cartbar] 關閉）
+function renderCartBar() {
+  if (!document.body || document.body.hasAttribute('data-no-cartbar')) return;
+  let bar = document.getElementById('cartBar');
+  const boxes = Cart.getCount();
+  if (boxes === 0) {
+    if (bar) bar.remove();
+    document.body.classList.remove('has-cartbar');
+    return;
+  }
+  const shipping = calcShipping(boxes);
+  const total = Cart.getTotal() + shipping;
+  const remainder = boxes % 6;
+  const hint = remainder === 0 ? '🎉 已達免運' : `再 ${6 - remainder} 盒免運`;
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'cartBar';
+    bar.className = 'cart-bar';
+    document.body.appendChild(bar);
+    document.body.classList.add('has-cartbar');
+  }
+  bar.innerHTML = `
+    <div class="cart-bar-inner">
+      <div class="cart-bar-info">
+        <strong>🛒 ${boxes} 盒</strong>
+        <span>${shipping === 0 ? '免運費' : '運費 NT$ ' + shipping}</span>
+        <span class="cart-bar-hint">${hint}</span>
+      </div>
+      <div class="cart-bar-total">NT$ ${total.toLocaleString()}</div>
+      <a href="cart.html" class="cart-bar-btn">去結帳 →</a>
+    </div>`;
 }
 
 // 初始化購物車數量
