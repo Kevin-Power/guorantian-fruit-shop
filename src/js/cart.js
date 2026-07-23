@@ -85,6 +85,17 @@ const Cart = {
   }
 };
 
+// ===== 全程冷鏈配送運費 =====
+// 1～2盒 300 元、3～5盒 380 元、同一地址滿6盒免運；
+// 6的倍數（6、12、18、24…盒）皆免運，超出的餘數盒數依上述級距計費。
+// 8～10盒採全冷鏈分箱配送，確保配送品質（不另收費）。
+function calcShipping(boxCount) {
+  if (boxCount <= 0) return 0;
+  const remainder = boxCount % 6;
+  if (remainder === 0) return 0;
+  return remainder <= 2 ? 300 : 380;
+}
+
 // 產品卡片生成器
 function createProductCard(fruit, showAddToCart = true) {
   const tagHtml = fruit.tags.map(t => `<span class="tag">${t}</span>`).join('');

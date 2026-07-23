@@ -67,18 +67,26 @@
             <span id="subtotal">NT$ 0</span>
           </div>
           <div class="summary-row">
-            <span>運費</span>
-            <span id="shipping">NT$ 120</span>
+            <span>冷鏈運費</span>
+            <span id="shipping">NT$ 0</span>
           </div>
           <div class="summary-row" id="freeShippingRow" style="display:none;">
-            <span style="color: #7BAE84;">免運費優惠</span>
-            <span style="color: #7BAE84;">- NT$ 120</span>
+            <span style="color: #7BAE84;">🎉 滿6盒免運優惠</span>
+            <span style="color: #7BAE84;">免運費</span>
           </div>
           <div class="summary-row total">
             <span>訂單總計</span>
             <span class="price" id="totalAmount">NT$ 0</span>
           </div>
           <div id="freeShippingHint" style="font-size:0.82rem;color:#888;text-align:center;margin-top:8px;padding:8px;background:#f5f5f5;border-radius:8px;"></div>
+          <div style="margin-top:12px;padding:12px;background:#FFF8F4;border-radius:8px;font-size:0.8rem;color:#6B4E3D;line-height:1.8;">
+            <strong>🚚 全程冷鏈配送運費</strong><br>
+            🍬 1～2盒：300 元<br>
+            🍬 3～5盒：380 元<br>
+            🍬 6盒（同一地址）：免運費<br>
+            🍬 8～10盒（同一地址）：全冷鏈分箱配送，確保品質<br>
+            ⭐️ 同一地址滿 6盒、12盒、18盒、24盒…（6的倍數）皆享免運
+          </div>
           <button class="checkout-btn" onclick="showCheckoutForm()">
             🎉 前往結帳
           </button>
@@ -110,7 +118,7 @@
           <div class="social-links">
             <a href="#" class="social-link">📘 Facebook</a>
             <a href="#" class="social-link">📸 Instagram</a>
-            <a href="#" class="social-link">💬 LINE</a>
+            <a href="https://lin.ee/5bs67zb" target="_blank" rel="noopener" class="social-link">💬 LINE</a>
           </div>
         </div>
         <div class="footer-links">
@@ -148,10 +156,8 @@
 
   <script src="src/js/data.js"></script>
   <script src="src/js/cart.js"></script>
+  <script src="src/js/order-sync.js"></script>
   <script>
-    const FREE_SHIPPING_THRESHOLD = 800;
-    const SHIPPING_FEE = 120;
-
     document.addEventListener('DOMContentLoaded', () => {
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
@@ -204,23 +210,24 @@
 
     function updateSummary() {
       const subtotal = Cart.getTotal();
-      const isFreeShipping = subtotal >= FREE_SHIPPING_THRESHOLD;
-      const shipping = isFreeShipping ? 0 : SHIPPING_FEE;
+      const boxes = Cart.getCount();
+      const shipping = calcShipping(boxes);
+      const isFreeShipping = boxes > 0 && shipping === 0;
       const total = subtotal + shipping;
 
       document.getElementById('subtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
       document.getElementById('totalAmount').textContent = `NT$ ${total.toLocaleString()}`;
       document.getElementById('freeShippingRow').style.display = isFreeShipping ? 'flex' : 'none';
-      document.getElementById('shipping').textContent = isFreeShipping ? 'NT$ 0' : `NT$ ${SHIPPING_FEE}`;
+      document.getElementById('shipping').textContent = isFreeShipping ? '免運費' : `NT$ ${shipping}`;
 
       const hint = document.getElementById('freeShippingHint');
       if (isFreeShipping) {
-        hint.textContent = '🎉 恭喜！您已達到免運門檻';
+        hint.textContent = `🎉 恭喜！${boxes} 盒（6的倍數）享免運優惠`;
         hint.style.background = '#EDF5EE';
         hint.style.color = '#7BAE84';
       } else {
-        const diff = FREE_SHIPPING_THRESHOLD - subtotal;
-        hint.textContent = `再消費 NT$ ${diff} 即可享免運費`;
+        const need = 6 - (boxes % 6);
+        hint.textContent = `目前共 ${boxes} 盒，再加 ${need} 盒湊滿 6 的倍數即享免運`;
         hint.style.background = '#FFF8F4';
         hint.style.color = '#E8845A';
       }
@@ -263,7 +270,7 @@
     function showCheckoutForm() {
       if (Cart.items.length === 0) return;
       const subtotal = Cart.getTotal();
-      const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
+      const shipping = calcShipping(Cart.getCount());
       const total = subtotal + shipping;
 
       document.querySelector('.cart-section').innerHTML = `
@@ -315,7 +322,7 @@
                   <span>商品小計</span><span>NT$ ${subtotal.toLocaleString()}</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:0.9rem;">
-                  <span>運費</span><span>${shipping === 0 ? '<span style="color:#7BAE84;">免運費</span>' : 'NT$ ' + shipping}</span>
+                  <span>冷鏈運費</span><span>${shipping === 0 ? '<span style="color:#7BAE84;">免運費</span>' : 'NT$ ' + shipping}</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;padding:12px 0 0;font-size:1.2rem;font-weight:900;border-top:2px solid #F5DDD0;margin-top:8px;color:#E8845A;">
                   <span>應付金額</span><span>NT$ ${total.toLocaleString()}</span>
@@ -364,12 +371,36 @@
       orders.push(order);
       localStorage.setItem('grt_orders', JSON.stringify(orders));
 
+      // 訂購單登記到 Google Sheet（背景送出，不影響顧客流程）
+      ORDER_SYNC.send('order', order);
+
       Cart.clear();
       showOrderSuccess(order);
     }
 
+    let lastOrderLineText = '';
+
+    function copyOrderText(btn) {
+      const done = () => {
+        btn.textContent = '✅ 已複製！';
+        setTimeout(() => { btn.textContent = '📋 複製訂單內容'; }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(lastOrderLineText).then(done);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = lastOrderLineText;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        done();
+      }
+    }
+
     function showOrderSuccess(order) {
       const deliveryDate = getDeliveryDate();
+      lastOrderLineText = ORDER_SYNC.buildLineMessage(order);
       document.querySelector('.cart-section').innerHTML = `
         <div class="container">
           <div class="success-section" style="padding: 40px 0; min-height: auto;">
@@ -415,11 +446,22 @@
                 </div>
               </div>
 
-              <div style="background:#EDF5EE;border-radius:12px;padding:16px;margin-bottom:24px;text-align:left;">
+              <div style="background:#EDF5EE;border-radius:12px;padding:16px;margin-bottom:20px;text-align:left;">
                 <div style="font-weight:700;font-size:0.9rem;color:#3a7a3a;margin-bottom:8px;">✅ 匯款完成後請回報</div>
                 <p style="font-size:0.85rem;color:#555;line-height:1.6;margin:0;">
                   完成匯款後，請前往「<a href="payment.html?order=${order.orderNo}" style="color:#E8845A;font-weight:700;text-decoration:underline;">匯款回報</a>」頁面填寫匯款資訊（帳號末五碼、匯款金額、匯款日期），方便我們快速核對出貨。
                 </p>
+              </div>
+
+              <div style="background:#E9F9EE;border:1px solid #06C755;border-radius:12px;padding:16px;margin-bottom:24px;text-align:left;">
+                <div style="font-weight:800;font-size:0.95rem;color:#06903E;margin-bottom:8px;">💬 加 LINE 通知我們，出貨更快！</div>
+                <p style="font-size:0.85rem;color:#555;line-height:1.6;margin:0 0 12px;">
+                  點「複製訂單內容」，再加入果然甜 LINE 官方帳號，把訂單內容貼給我們，小編會第一時間為您安排。
+                </p>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                  <button onclick="copyOrderText(this)" style="padding:10px 18px;background:white;color:#06903E;border:2px solid #06C755;border-radius:8px;font-size:0.9rem;font-weight:700;cursor:pointer;font-family:inherit;">📋 複製訂單內容</button>
+                  <a href="${ORDER_SYNC.lineUrl}" target="_blank" rel="noopener" style="display:inline-block;padding:10px 18px;background:#06C755;color:white;border-radius:8px;font-size:0.9rem;font-weight:700;text-decoration:none;">💬 開啟 LINE 傳送訂單</a>
+                </div>
               </div>
 
               <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
@@ -438,5 +480,10 @@
       return `${d.getMonth() + 1}/${d.getDate()}（${['日','一','二','三','四','五','六'][d.getDay()]}）`;
     }
   </script>
+  <!-- LINE 浮動按鈕 -->
+  <a href="https://lin.ee/5bs67zb" target="_blank" rel="noopener" class="line-float" aria-label="加入果然甜 LINE 官方帳號">
+    <span>💬</span><span class="line-float-text">LINE 訂購諮詢</span>
+  </a>
+
 </body>
 </html>
