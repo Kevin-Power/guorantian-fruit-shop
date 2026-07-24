@@ -1813,3 +1813,29 @@ body.has-cartbar .line-float { bottom: 88px; }
   transition: var(--transition);
 }
 .hpc-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(200, 100, 50, 0.45); color: white; }
+
+/* ===== 手機底部固定雙按鈕 ===== */
+.mobile-cta-bar { display: none; }
+@media (max-width: 768px) {
+  .mobile-cta-bar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    display: flex;
+    z-index: 940;
+    box-shadow: 0 -4px 20px rgba(61, 43, 31, 0.18);
+  }
+  .mobile-cta-bar a {
+    flex: 1;
+    text-align: center;
+    padding: 15px 8px;
+    font-weight: 800;
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+  }
+  .mcb-order { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); }
+  .mcb-line { background: #06C755; }
+  body.with-mcb { padding-bottom: 54px; }
+  body.with-mcb .line-float { display: none; }
+  body.has-cartbar .mobile-cta-bar { display: none; }
+}

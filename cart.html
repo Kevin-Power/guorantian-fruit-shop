@@ -6,7 +6,7 @@
   <title>購物車 - 果然甜</title>
   <meta name="description" content="果然甜購物車 — 確認您預購的梨山上海水蜜桃，享受產地冷鏈直送的甜蜜。">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍑</text></svg>">
-  <link rel="stylesheet" href="src/css/style.css">
+  <link rel="stylesheet" href="src/css/style.css?v=3">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body data-no-cartbar>
@@ -117,9 +117,7 @@
           <a href="index.html" class="nav-logo"><span class="logo-icon">🍑</span><span class="logo-text">果然甜</span></a>
           <p>梨山水蜜桃專門店，<br>婆婆爺爺一輩子只種好這一顆甜</p>
           <div class="social-links">
-            <a href="#" class="social-link">📘 Facebook</a>
-            <a href="#" class="social-link">📸 Instagram</a>
-            <a href="https://lin.ee/5bs67zb" target="_blank" rel="noopener" class="social-link">💬 LINE</a>
+            <a href="https://lin.ee/5bs67zb" target="_blank" rel="noopener" class="social-link">💬 LINE 官方帳號 @084pklgw</a>
           </div>
         </div>
         <div class="footer-links">
@@ -135,29 +133,28 @@
         <div class="footer-links">
           <h4>服務說明</h4>
           <ul>
-            <li><a href="#">配送說明</a></li>
-            <li><a href="#">退換貨政策</a></li>
-            <li><a href="#">隱私權政策</a></li>
-            <li><a href="#">常見問題</a></li>
+            <li><a href="policy.html#delivery">配送說明</a></li>
+            <li><a href="policy.html#returns">退換貨與售後</a></li>
+            <li><a href="policy.html#privacy">隱私權政策</a></li>
+            <li><a href="contact.html">常見問題</a></li>
           </ul>
         </div>
         <div class="footer-contact">
-          <h4>聯絡資訊</h4>
-          <p>📞 (02) 1234-5678</p>
-          <p>📧 hello@guorantian.tw</p>
+          <h4>聯絡我們</h4>
+          <p>💬 LINE 官方帳號：<a href="https://lin.ee/5bs67zb" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">@084pklgw</a></p>
           <p>📍 台北市中山區農安街4號</p>
-          <p>🕐 週一至週六 09:00-18:00</p>
+          <p>🏔️ 產地：台中梨山（海拔2000公尺）</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 果然甜水果專賣店 版權所有</p>
+        <p>&copy; 2026 果然甜水果專賣店 版權所有</p>
       </div>
     </div>
   </footer>
 
-  <script src="src/js/data.js"></script>
-  <script src="src/js/cart.js"></script>
-  <script src="src/js/order-sync.js"></script>
+  <script src="src/js/data.js?v=3"></script>
+  <script src="src/js/cart.js?v=3"></script>
+  <script src="src/js/order-sync.js?v=3"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const hamburger = document.getElementById('hamburger');
@@ -345,7 +342,7 @@
                 </div>
               </div>
               <div style="margin-top:16px;padding:12px;background:#FFF8F4;border-radius:8px;font-size:0.82rem;color:#6B4E3D;line-height:1.6;">
-                💡 送出訂單後，系統會顯示匯款帳號資訊。<br>完成匯款後請至「匯款回報」頁面填寫匯款資料，我們確認後即安排出貨。
+                💡 送出訂單後，系統會顯示匯款帳號資訊。<br>完成匯款後請至「匯款回報」頁面填寫匯款資料，我們確認後即安排出貨。<br><br>📌 水蜜桃為生鮮食品，依法不適用七日猶豫期；如有碰傷、腐壞等品質問題，請於到貨 24 小時內拍照透過 LINE 聯繫，確認後補寄或退款。送出訂單即表示同意 <a href="policy.html" target="_blank" style="color:#E8845A;font-weight:700;text-decoration:underline;">購物條款與退換貨政策</a>。
               </div>
             </div>
           </div>
@@ -457,7 +454,7 @@
                   收件地址：${order.customer.address}<br>
                   警衛室代收：${order.customer.guard || '未填寫'}<br>
                   訂單金額：<strong style="color:#E8845A;font-size:1.1rem;">NT$ ${order.total.toLocaleString()}</strong><br>
-                  出貨安排：確認匯款後，依採收狀況及訂單順序陸續出貨<br>
+                  出貨安排：匯款回報後 1 個工作天內完成核對，依採收狀況及訂單順序陸續出貨；出貨當天提供黑貓宅配單號<br>
                   <span style="font-size:0.82rem;color:#888;">※ 宅配旺季貨量較大，恕無法指定到貨日期、無法保證隔日送達。收到商品後請第一時間開箱檢查，如有問題請儘速與我們聯繫。</span>
                 </div>
               </div>
