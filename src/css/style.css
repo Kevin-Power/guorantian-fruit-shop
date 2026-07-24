@@ -1987,3 +1987,32 @@ body.has-cartbar .line-float { bottom: 88px; }
   .page-info .page-hero { padding: 104px 0 96px; }
   .page-info .info-section { margin-top: -64px; padding-bottom: 40px; }
 }
+
+/* 關於我們：堅持項目去框，改為乾淨的圖示＋文字 */
+.value-item {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 6px 0;
+}
+.value-icon {
+  font-size: 1.6rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFF3EC;
+  border-radius: 50%;
+}
+
+/* ===== QA 修整：關於我們桃子去框、商品卡按鈕對齊 ===== */
+.about-visual {
+  background: none;
+  border-radius: 0;
+  padding: 24px 0;
+}
+.product-card { display: flex; flex-direction: column; }
+.product-info { display: flex; flex-direction: column; flex: 1; }
+.product-info .btn-add-cart { margin-top: auto; }
+.product-footer { margin-bottom: 12px; }
