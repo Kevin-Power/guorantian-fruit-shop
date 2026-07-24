@@ -3,7 +3,7 @@
 const fruitsData = [
   {
     id: 13,
-    img: "src/img/sticker-sparkle.png",
+    img: "src/img/sticker-box.png",
     name: "梨山上海蜜水蜜桃 8粒裝",
     emoji: "🍑",
     price: 750,
@@ -37,7 +37,7 @@ const fruitsData = [
   },
   {
     id: 22,
-    img: "src/img/sticker-box.png",
+    img: "src/img/sticker-sparkle.png",
     name: "梨山上海蜜水蜜桃 5粒裝",
     emoji: "🍑",
     price: 950,
