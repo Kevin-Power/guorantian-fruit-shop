@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="qo-card ${f.id === 23 ? 'qo-limited' : ''}">
           ${f.id === 21 ? '<div class="qo-flag">最多人買</div>' : ''}
           <div class="qo-badge">${qoBadges[f.id]}</div>
-          <div class="qo-emoji">🍑</div>
+          ${f.img ? `<img class="qo-art" src="${f.img}" alt="">` : '<div class="qo-emoji">🍑</div>'}
           <h3 class="qo-title">${spec}</h3>
           <div class="qo-weight">${weight}</div>
           <div class="qo-price"><span class="qo-cur">NT$</span>${f.price.toLocaleString()}<span class="qo-unit">／盒</span></div>

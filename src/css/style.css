@@ -558,6 +558,14 @@ ul { list-style: none; }
 
 .product-emoji { font-size: 5rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)); }
 
+/* 設計師貼圖版商品圖 */
+.product-art {
+  width: 60%;
+  max-height: 82%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(160, 90, 60, 0.18));
+}
+
 .sold-out-badge {
   position: absolute;
   top: 12px; right: 12px;
@@ -1637,6 +1645,7 @@ html { scroll-behavior: smooth; }
 }
 .qo-badge { font-size: 0.8rem; color: var(--text-light); font-weight: 700; margin-bottom: 4px; }
 .qo-emoji { font-size: 2.6rem; margin-bottom: 2px; }
+.qo-art { width: 64px; height: 64px; object-fit: contain; display: block; margin: 0 auto 4px; }
 .qo-title { font-size: 1.3rem; font-weight: 900; margin-bottom: 2px; }
 .qo-weight { font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px; }
 .qo-price { font-size: 1.9rem; font-weight: 900; color: var(--primary); margin-bottom: 12px; line-height: 1; }
@@ -1973,6 +1982,7 @@ body.has-cartbar .line-float { bottom: 88px; }
   .qo-flag { font-size: 0.68rem; padding: 3px 10px; top: -10px; }
   .qo-badge { font-size: 0.72rem; }
   .qo-emoji { font-size: 1.9rem; }
+  .qo-art { width: 48px; height: 48px; }
   .qo-title { font-size: 1.1rem; }
   .qo-weight { font-size: 0.76rem; margin-bottom: 8px; }
   .qo-price { font-size: 1.5rem; margin-bottom: 10px; }

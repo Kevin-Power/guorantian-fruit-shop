@@ -105,7 +105,7 @@ function createProductCard(fruit, showAddToCart = true) {
   return `
     <div class="product-card ${!fruit.inStock ? 'out-of-stock' : ''}" data-id="${fruit.id}">
       <div class="product-emoji-wrap">
-        <div class="product-emoji">${fruit.emoji}</div>
+        ${fruit.img ? `<img class="product-art" src="${fruit.img}" alt="${fruit.name}">` : `<div class="product-emoji">${fruit.emoji}</div>`}
         ${!fruit.inStock ? '<div class="sold-out-badge">已售完</div>' : ''}
       </div>
       <div class="product-info">
