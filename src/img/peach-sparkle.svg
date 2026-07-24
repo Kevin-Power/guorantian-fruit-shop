@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- 手繪風：一顆水蜜桃＋星光 -->
+  <g fill="none" stroke="#A5674F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M100 66 C88 52 60 54 48 74 C36 94 38 132 57 152 C76 172 124 172 143 152 C162 132 164 94 152 74 C140 54 112 52 100 66 Z" fill="#F9BFAC"/>
+    <path d="M100 66 C96 88 96 122 102 150" stroke-width="3.5" opacity="0.55"/>
+    <path d="M100 62 C100 52 102 46 106 40" stroke-width="4.5"/>
+    <path d="M96 52 C80 34 56 36 50 44 C58 56 82 62 96 52 Z" fill="#9CCB86" stroke="#6FA25C"/>
+    <path d="M108 48 C118 28 142 26 150 32 C146 46 122 56 108 48 Z" fill="#9CCB86" stroke="#6FA25C"/>
+  </g>
+  <ellipse cx="72" cy="100" rx="16" ry="10" fill="#FCD9CC" opacity="0.9" transform="rotate(-18 72 100)"/>
+  <ellipse cx="128" cy="132" rx="13" ry="9" fill="#F29B8A" opacity="0.55"/>
+  <g fill="#F6C46B">
+    <path d="M28 78 C30 86 32 88 40 90 C32 92 30 94 28 102 C26 94 24 92 16 90 C24 88 26 86 28 78 Z"/>
+    <path d="M172 52 C173.5 58 175 59.5 181 61 C175 62.5 173.5 64 172 70 C170.5 64 169 62.5 163 61 C169 59.5 170.5 58 172 52 Z"/>
+    <circle cx="166" cy="118" r="4"/>
+    <circle cx="40" cy="146" r="3.5"/>
+  </g>
+</svg>

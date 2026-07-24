@@ -1480,22 +1480,31 @@ ul { list-style: none; }
 .fade-up:nth-child(3) { transition-delay: 0.2s; }
 .fade-up:nth-child(4) { transition-delay: 0.3s; }
 
-.section-header {
+/* 只有載入 main.js（會加上 html.anim）的頁面才先隱藏做進場動畫，
+   其他頁面標題直接顯示，避免沒有 observer 時永遠 opacity:0 */
+html.anim .section-header {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.section-header.visible {
+html.anim .section-header.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Season card Lishan highlight */
-.season-fruit-tag:has(🍑),
-.season-fruit-tag:has(🍎) {
-  background: linear-gradient(135deg, #FFE8DC, #FFCFB8);
-  font-weight: 700;
+/* 設計師手繪風水蜜桃裝飾列 */
+.peach-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: -4px auto 40px;
+}
+.peach-strip img { width: 92px; height: 92px; }
+@media (max-width: 768px) {
+  .peach-strip { gap: 14px; margin-bottom: 28px; }
+  .peach-strip img { width: 58px; height: 58px; }
 }
 
 /* ===== RESPONSIVE ===== */

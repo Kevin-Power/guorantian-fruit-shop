@@ -1,4 +1,7 @@
 // 主要 JS - 首頁
+// 標記本頁有進場動畫（CSS 以 html.anim 判斷是否先隱藏 section-header）
+document.documentElement.classList.add('anim');
+
 document.addEventListener('DOMContentLoaded', () => {
   // 漢堡選單
   const hamburger = document.getElementById('hamburger');
