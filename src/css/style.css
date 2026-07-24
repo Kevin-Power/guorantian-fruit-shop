@@ -1907,10 +1907,18 @@ body.has-cartbar .line-float { bottom: 88px; }
   border-color: white;
   color: var(--primary-dark);
 }
-.hero-visual { display: flex; align-items: center; gap: 28px; }
-.hero-peach-art { width: 220px; flex-shrink: 0; }
-.hero-peach-art svg { width: 100%; height: auto; filter: drop-shadow(0 14px 28px rgba(200, 100, 50, 0.28)); }
-@media (max-width: 1280px) { .hero-peach-art { display: none; } }
+.hero-visual { display: flex; align-items: center; }
+.hero-peach-art {
+  position: absolute;
+  right: -70px;
+  top: 52%;
+  transform: translateY(-48%);
+  width: clamp(340px, 34vw, 540px);
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-peach-art img { width: 100%; height: auto; opacity: 0.95; }
+@media (max-width: 900px) { .hero-peach-art { display: none; } }
 
 /* 關於我們：飄動的 emoji 頭像改為靜態水蜜桃插圖 */
 .about-peach-art { display: flex; justify-content: center; }
