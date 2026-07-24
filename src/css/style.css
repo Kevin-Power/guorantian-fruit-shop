@@ -1911,3 +1911,57 @@ body.has-cartbar .line-float { bottom: 88px; }
 .hero-peach-art { width: 220px; flex-shrink: 0; }
 .hero-peach-art svg { width: 100%; height: auto; filter: drop-shadow(0 14px 28px rgba(200, 100, 50, 0.28)); }
 @media (max-width: 1280px) { .hero-peach-art { display: none; } }
+
+/* 關於我們：飄動的 emoji 頭像改為靜態水蜜桃插圖 */
+.about-peach-art { display: flex; justify-content: center; }
+
+/* ===== 手機版面整理：壓縮高度、數據列橫排、訂購卡雙欄 ===== */
+@media (max-width: 768px) {
+  .hero-visual { display: none; }
+  .hero { padding: 100px 5vw 44px; }
+  .hero-badge { margin-bottom: 16px; font-size: 0.82rem; padding: 7px 16px; }
+  .hero-title { margin-bottom: 14px; }
+  .hero-subtitle { font-size: 0.95rem; margin-bottom: 24px; line-height: 1.75; }
+  .hero-btns { margin-bottom: 28px; gap: 12px; }
+  .hero-btns .btn { padding: 13px 22px; font-size: 0.95rem; }
+  .hero-stats {
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 8px;
+    width: 100%;
+    padding: 13px 8px;
+    margin: 0;
+  }
+  .stat-num { font-size: 1.1rem; }
+  .stat-label { font-size: 0.7rem; }
+  .stat-divider { width: 1px; height: 34px; }
+
+  .quick-order { padding: 40px 0 24px; }
+  .section-header { margin-bottom: 24px; }
+  .section-header h2 { font-size: 1.45rem; }
+  .section-header p { font-size: 0.88rem; }
+  .qo-note { font-size: 0.8rem; margin-top: 16px; padding: 10px 14px; line-height: 1.8; }
+  .order-steps { margin-top: 20px; gap: 8px; }
+  .order-step { padding: 8px 16px 8px 10px; }
+
+  .features { padding: 44px 0; }
+  .testimonials { padding: 44px 0; }
+  .popular { padding: 36px 0; }
+  #peach-preorder { padding: 40px 0 12px !important; }
+}
+
+@media (max-width: 640px) {
+  .qo-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .qo-card { padding: 16px 12px 14px; }
+  .qo-flag { font-size: 0.68rem; padding: 3px 10px; top: -10px; }
+  .qo-badge { font-size: 0.72rem; }
+  .qo-emoji { font-size: 1.9rem; }
+  .qo-title { font-size: 1.1rem; }
+  .qo-weight { font-size: 0.76rem; margin-bottom: 8px; }
+  .qo-price { font-size: 1.5rem; margin-bottom: 10px; }
+  .qo-preorder-note { font-size: 0.68rem; padding: 2px 8px; margin-bottom: 8px; }
+  .qo-qty { gap: 10px; margin-bottom: 10px; }
+  .qo-qty-btn { width: 38px; height: 38px; }
+  .qo-add { padding: 11px 6px; font-size: 0.88rem; }
+  .hero-stats { border-radius: 12px; }
+}
