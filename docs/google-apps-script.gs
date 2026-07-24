@@ -23,6 +23,11 @@ const LINE_ADMIN_USER_ID = '';        // 接收通知的 LINE userId（開發者
 // ── 選用：Email 通知 ──
 const NOTIFY_EMAIL = ''; // 例如 'salonpas1008@gmail.com'，留空則不寄信
 
+// 瀏覽器直接打開 /exec 網址可看到這個訊息，代表部署與存取權設定成功
+function doGet() {
+  return jsonOutput({ ok: true, message: '🍑 果然甜訂單 webhook 運作中' });
+}
+
 function doPost(e) {
   try {
     const body = JSON.parse(e.postData.contents);
