@@ -1877,3 +1877,37 @@ body.has-cartbar .line-float { bottom: 88px; }
 .hero-wave { pointer-events: none; }
 .page-wave { pointer-events: none; }
 .hero-price-card:hover { animation-play-state: paused; }
+
+/* ===== 視覺回饋調整：字色加深、白色購物車、白底公告鈕、可愛水蜜桃 ===== */
+.logo-text { color: #6B4E3D; }
+.nav-cta { color: var(--primary-dark) !important; font-weight: 800; }
+.cart-btn {
+  background: white;
+  color: var(--text-dark);
+  box-shadow: 0 2px 12px rgba(107, 78, 61, 0.18);
+}
+.cart-btn:hover { background: #FFF3EC; }
+.cart-count {
+  background: var(--primary);
+  color: white;
+}
+.hero-subtitle {
+  color: #6B4E3D;
+  font-weight: 600;
+  text-shadow: none;
+}
+.btn-outline {
+  background: white;
+  color: var(--primary-dark);
+  border: 2px solid white;
+  font-weight: 800;
+}
+.btn-outline:hover {
+  background: #FFF3EC;
+  border-color: white;
+  color: var(--primary-dark);
+}
+.hero-visual { display: flex; align-items: center; gap: 28px; }
+.hero-peach-art { width: 220px; flex-shrink: 0; }
+.hero-peach-art svg { width: 100%; height: auto; filter: drop-shadow(0 14px 28px rgba(200, 100, 50, 0.28)); }
+@media (max-width: 1280px) { .hero-peach-art { display: none; } }
