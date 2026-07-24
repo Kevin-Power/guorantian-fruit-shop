@@ -1777,7 +1777,6 @@ body.has-cartbar .line-float { bottom: 88px; }
   border-radius: 20px;
   padding: 24px;
   box-shadow: 0 20px 60px rgba(200, 100, 50, 0.25);
-  animation: cardFloat 5s ease-in-out infinite;
 }
 @keyframes cardFloat {
   0%, 100% { transform: translateY(0); }
@@ -1871,3 +1870,10 @@ body.has-cartbar .line-float { bottom: 88px; }
   .hc-summary { position: static; order: -1; }
   .hc-form .form-row { grid-template-columns: 1fr !important; }
 }
+
+/* ===== 修正：hero-bg 裝飾層攔截點擊，按鈕點不到 ===== */
+.hero-bg { pointer-events: none; }
+.hero-content, .hero-visual { position: relative; z-index: 2; }
+.hero-wave { pointer-events: none; }
+.page-wave { pointer-events: none; }
+.hero-price-card:hover { animation-play-state: paused; }
