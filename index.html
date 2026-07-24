@@ -10,11 +10,11 @@
   <meta property="og:description" content="婆婆跟爺爺在梨山種了一輩子的水蜜桃，一年只有三週，全程冷鏈直送到府。">
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍑</text></svg>">
-  <link rel="stylesheet" href="src/css/style.css">
+  <link rel="stylesheet" href="src/css/style.css?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="with-mcb">
 
   <!-- 導覽列 -->
   <nav class="navbar" id="navbar">
@@ -47,25 +47,25 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <div class="hero-badge">🍑 2026 上海水蜜桃・預購開始</div>
+      <div class="hero-badge">🍑 2026 上海水蜜桃・現正出貨中</div>
       <h1 class="hero-title">
         一年只有三週的<br>
         <span class="highlight">上海水蜜桃</span>
       </h1>
-      <p class="hero-subtitle">婆婆跟爺爺在海拔2000公尺的梨山種了一輩子水蜜桃，熟度到了才採收，全程冷鏈直送到府。7月24日起依訂單順序陸續出貨——錯過，就要再等一年</p>
+      <p class="hero-subtitle">婆婆跟爺爺在海拔2000公尺的梨山種了一輩子水蜜桃，熟度到了才採收，全程冷鏈直送到府。現正依訂單順序陸續出貨中——錯過，就要再等一年</p>
       <div class="hero-btns">
         <a href="#quick-order" class="btn btn-primary">🍑 立即預購</a>
         <a href="#peach-preorder" class="btn btn-outline">查看完整公告</a>
       </div>
       <div class="hero-stats">
         <div class="stat">
-          <span class="stat-num">7/24</span>
-          <span class="stat-label">起陸續出貨</span>
+          <span class="stat-num">出貨中</span>
+          <span class="stat-label">依訂單順序陸續出貨</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat">
-          <span class="stat-num">14°</span>
-          <span class="stat-label">採收糖度門檻</span>
+          <span class="stat-num">2000m</span>
+          <span class="stat-label">梨山種植海拔</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat">
@@ -75,18 +75,20 @@
       </div>
     </div>
     <div class="hero-visual">
-      <div class="fruit-orbit">
-        <div class="orbit-ring ring-1">
-          <div class="orbit-fruit" style="--angle:0deg">🤲</div>
-          <div class="orbit-fruit" style="--angle:120deg">❄️</div>
-          <div class="orbit-fruit" style="--angle:240deg">💧</div>
+      <div class="hero-price-card">
+        <div class="hpc-head">
+          <span class="hpc-peach">🍑</span>
+          <div>
+            <div class="hpc-title">2026 預購價目</div>
+            <div class="hpc-sub">全程冷鏈直送・現正陸續出貨</div>
+          </div>
         </div>
-        <div class="orbit-ring ring-2">
-          <div class="orbit-fruit" style="--angle:60deg">🏔️</div>
-          <div class="orbit-fruit" style="--angle:180deg">🌿</div>
-          <div class="orbit-fruit" style="--angle:300deg">☀️</div>
-        </div>
-        <div class="hero-main-fruit">🍑</div>
+        <div class="hpc-row"><span class="hpc-spec">8粒裝 <small>約5～6兩</small></span><span class="hpc-price">NT$ 750</span></div>
+        <div class="hpc-row"><span class="hpc-spec">6粒裝 <small>約6～7兩</small></span><span class="hpc-price">NT$ 850</span></div>
+        <div class="hpc-row"><span class="hpc-spec">5粒裝 <small>約7～8兩</small></span><span class="hpc-price">NT$ 950</span></div>
+        <div class="hpc-row"><span class="hpc-spec">5大裝 <small>8兩以上・限量</small></span><span class="hpc-price">NT$ 1,100</span></div>
+        <div class="hpc-note">⭐️ 同一地址滿 6 盒免運（6 的倍數皆免運）</div>
+        <a href="#quick-order" class="hpc-btn">🛒 立即預購</a>
       </div>
     </div>
     <div class="hero-wave">
@@ -105,7 +107,7 @@
         <p>四種規格一目了然，選數量、加入購物車，兩分鐘完成預購</p>
       </div>
       <div class="qo-grid" id="quickOrderGrid"></div>
-      <div class="qo-note">🚚 1～2盒 300 元・3～5盒 380 元・<strong>同一地址滿 6 盒免運</strong>（6 的倍數皆免運）｜❄️ 全程冷鏈配送｜🌟 7/24 起依訂單順序出貨</div>
+      <div class="qo-note">🚚 1～2盒 300 元・3～5盒 380 元・<strong>同一地址滿 6 盒免運</strong>（6 的倍數皆免運）｜❄️ 全程冷鏈配送｜🌟 現正依訂單順序陸續出貨中</div>
       <div class="order-steps">
         <div class="order-step">
           <div class="order-step-num">1</div>
@@ -125,6 +127,61 @@
     </div>
   </section>
 
+  <!-- 首頁一頁式結帳 -->
+  <section id="home-checkout" class="quick-order" style="padding-top: 0; display: none;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">最後一步</span>
+        <h2>📝 填資料，完成訂購</h2>
+        <p>不用註冊、不用 Email，填好收件資料送出就完成</p>
+      </div>
+      <div class="hc-layout">
+        <form id="homeOrderForm" class="hc-form">
+          <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div>
+              <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">收件人姓名 *</label>
+              <input type="text" id="hcName" placeholder="請輸入真實姓名" required style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;background:white;">
+            </div>
+            <div>
+              <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">聯絡電話 *</label>
+              <input type="tel" id="hcPhone" placeholder="0912-345-678" required style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;background:white;">
+            </div>
+          </div>
+          <div style="margin-top:14px;">
+            <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">收件地址 *</label>
+            <input type="text" id="hcAddress" placeholder="請輸入完整收件地址" required style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;background:white;">
+          </div>
+          <div style="margin-top:14px;">
+            <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">收件處是否有警衛室可代收？ *</label>
+            <select id="hcGuard" required style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;font-family:inherit;background:white;color:#3D2B1F;">
+              <option value="" disabled selected>請選擇（冷藏配送，這能幫我們順利送達）</option>
+              <option value="有警衛室可代收">🏢 有警衛室／管理室，可代收</option>
+              <option value="無警衛室">🏠 無警衛室，請直接送到府上</option>
+              <option value="不確定">🤔 不確定</option>
+            </select>
+          </div>
+          <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;">
+            <div>
+              <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">LINE ID（選填）</label>
+              <input type="text" id="hcLine" placeholder="方便到貨通知" style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;background:white;">
+            </div>
+            <div>
+              <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">Email（選填）</label>
+              <input type="email" id="hcEmail" placeholder="example@email.com" style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;background:white;">
+            </div>
+          </div>
+          <div style="margin-top:14px;">
+            <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">備註（選填）</label>
+            <textarea id="hcNote" placeholder="如有特殊需求請說明（宅配旺季恕無法指定到貨日期）" style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;min-height:60px;resize:vertical;font-family:inherit;background:white;"></textarea>
+          </div>
+          <button type="submit" class="checkout-btn" style="width:100%;margin-top:18px;padding:16px;background:linear-gradient(135deg,#E8845A,#C96A42);color:white;border:none;border-radius:50px;font-size:1.1rem;font-weight:800;cursor:pointer;font-family:inherit;">✅ 確認送出訂單</button>
+          <p style="font-size:0.78rem;color:#A08070;margin-top:10px;text-align:center;line-height:1.7;">送出訂單即表示同意 <a href="policy.html" target="_blank" style="color:#E8845A;font-weight:700;">購物條款與退換貨政策</a>（生鮮食品不適用七日猶豫期）</p>
+        </form>
+        <div class="hc-summary" id="hcSummary"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- 2026 上海水蜜桃預購公告 -->
   <section id="peach-preorder" style="padding: 64px 0 24px; background: #FFF8F4;">
     <div class="container">
@@ -132,9 +189,11 @@
         <div style="background: linear-gradient(135deg, #E8845A, #C96A42); padding: 28px 32px; text-align: center; color: white;">
           <div style="font-size: 2.4rem; margin-bottom: 6px;">🍑</div>
           <h2 style="font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 900; margin: 0; color: white;">2026 上海水蜜桃預購開始</h2>
-          <p style="margin: 10px 0 0; color: rgba(255,255,255,0.92); font-size: 0.95rem;">🌟 預計 7 月 24 日起依採收狀況及訂單順序陸續出貨</p>
+          <p style="margin: 10px 0 0; color: rgba(255,255,255,0.92); font-size: 0.95rem;">🚚 現正依採收狀況及訂單順序陸續出貨中</p>
         </div>
-        <div style="padding: 32px 32px 36px; font-size: 0.95rem; color: #6B4E3D; line-height: 2;">
+        <details>
+          <summary style="padding: 16px 32px; cursor: pointer; font-weight: 800; color: #E8845A; text-align: center; font-size: 0.95rem; user-select: none;">📖 點我展開完整公告內容</summary>
+          <div style="padding: 8px 32px 36px; font-size: 0.95rem; color: #6B4E3D; line-height: 2;">
           <p style="margin-bottom: 16px;">親愛的朋友們，感謝大家一直以來對 <strong>果然甜</strong> 的支持與喜愛。每年到了水蜜桃產季，我們都希望能將最新鮮、最香甜的水蜜桃送到大家手中。今年為了提供更好的品質，我們在配送方式上全面升級。</p>
 
           <h3 style="font-size: 1.1rem; font-weight: 800; color: #3D2B1F; margin: 24px 0 10px;">❄️ 全程冷鏈配送，守護每一顆水蜜桃</h3>
@@ -183,7 +242,7 @@
           <p style="margin-bottom: 4px;">⭐️ 同一地址購買 <strong>6盒、12盒、18盒、24盒</strong>……等，以 6 盒為倍數皆享<strong>免運優惠</strong>。</p>
 
           <h3 style="font-size: 1.1rem; font-weight: 800; color: #3D2B1F; margin: 24px 0 10px;">📦 配送提醒</h3>
-          <p style="margin-bottom: 4px;">🌟 預計 <strong>7 月 24 日起</strong> 依採收狀況及訂單順序陸續出貨。</p>
+          <p style="margin-bottom: 4px;">🚚 <strong>現正依採收狀況及訂單順序陸續出貨中</strong>，出貨當天會提供黑貓宅配單號。</p>
           <p style="margin-bottom: 4px;">由於黑貓宅配旺季貨量較大，恕無法指定到貨日期，也無法保證隔日送達，敬請見諒。</p>
           <p style="margin-bottom: 16px;">收到商品後，請務必第一時間開箱檢查；若有任何問題，請儘速與我們聯繫，我們將盡快協助處理。</p>
 
@@ -194,7 +253,8 @@
             <a href="#quick-order" class="btn btn-primary">🍑 立即預購水蜜桃</a>
             <a href="https://lin.ee/5bs67zb" target="_blank" rel="noopener" class="btn" style="background: #06C755; color: white;">💬 LINE 諮詢訂購</a>
           </div>
-        </div>
+          </div>
+        </details>
       </div>
     </div>
   </section>
@@ -204,34 +264,24 @@
     <div class="container">
       <div class="section-header">
         <span class="section-badge">為什麼選擇我們</span>
-        <h2>婆婆爺爺的堅持</h2>
-        <p>在梨山打拼一輩子，一輩子只做一件事——把水蜜桃種好</p>
+        <h2>三個放心買的理由</h2>
+        <p>婆婆跟爺爺在梨山打拼一輩子，一輩子只做一件事——把水蜜桃種好</p>
       </div>
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">👵👴</div>
-          <h3>一輩子只種水蜜桃</h3>
-          <p>婆婆跟爺爺在梨山打拼了一輩子，不趕流行、不搶快，一生的熱情都放在同一件事上。這片果園，就是他們的人生</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🤲</div>
-          <h3>婆婆親手套袋</h3>
-          <p>每一顆水蜜桃都由婆婆親手套上白紙袋，讓果實在雲霧裡無日曬、無蟲害地慢慢長大，果皮細嫩、品相完美，這是機器做不到的事</p>
-        </div>
-        <div class="feature-card">
           <div class="feature-icon">🌄</div>
-          <h3>爺爺清晨巡園</h3>
-          <p>爺爺每天天沒亮就上山，一棵一棵看、一顆一顆挑，熟度剛剛好的才採下山。急不得，也懶不得——這是他一輩子的節奏</p>
+          <h3>熟度到了才採收</h3>
+          <p>爺爺每天天沒亮就上山巡園，一棵一棵看、一顆一顆挑，熟度剛剛好的才採下山。不提早搶收，所以一年只能賣短短三週</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🌿</div>
-          <h3>草生栽培不用藥</h3>
-          <p>山泉水灌溉，梨山日夜溫差自然催甜，不噴除草劑、不催熟，讓果樹在自己的節奏下把甜分一點一點存進去</p>
+          <div class="feature-icon">❄️</div>
+          <h3>全程冷鏈配送</h3>
+          <p>從採收、包裝到黑貓宅配全程低溫，降低夏季高溫造成的悶熱、軟化與碰傷。離開梨山什麼樣子，到你手上就什麼樣子</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">💯</div>
-          <h3>不甜就退款</h3>
-          <p>果然甜只賣一件事。收到不夠甜或不滿意，全額退款，不問原因、不為難你——婆婆說，做人跟種桃子一樣，要實在</p>
+          <div class="feature-icon">👵👴</div>
+          <h3>一輩子的家庭果園</h3>
+          <p>草生栽培、不使用除草劑、山泉水灌溉，每一顆由婆婆親手套袋。不是工廠，是兩位老人家用一輩子照顧的果園</p>
         </div>
       </div>
     </div>
@@ -249,130 +299,62 @@
     </div>
   </section>
 
-  <!-- 婆婆爺爺的故事 Banner -->
-  <section style="padding: 80px 0; background: linear-gradient(135deg, #C96A42, #E8845A, #F5A882);">
-    <div class="container">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:48px; flex-wrap:wrap;">
-        <div style="flex:1; min-width:280px;">
-          <span class="section-badge" style="background:rgba(255,255,255,0.2);color:white;">梨山‧海拔2000公尺</span>
-          <h2 style="font-size:clamp(1.8rem,4vw,2.5rem);font-weight:900;color:white;margin:12px 0;">一輩子，<br>只把一件事做好</h2>
-          <p style="color:rgba(255,255,255,0.9);font-size:1rem;line-height:1.8;margin-bottom:20px;">婆婆跟爺爺在梨山打拼了一輩子，種的就是這一味上海水蜜桃。山泉水灌溉、草生栽培不用除草劑，<strong style="color:#FFF3E0;">每一顆都由婆婆親手套袋</strong>，讓果實在雲霧裡慢慢積累甜分。爺爺說：「桃子熟了自己會告訴你，急不得。」熟度到了那天才採，一天都不早。</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;">
-            <span style="padding:5px 12px;background:rgba(255,255,255,0.18);border-radius:50px;font-size:0.82rem;color:rgba(255,255,255,0.95);">🌿 草生栽培</span>
-            <span style="padding:5px 12px;background:rgba(255,255,255,0.18);border-radius:50px;font-size:0.82rem;color:rgba(255,255,255,0.95);">💧 山泉水灌溉</span>
-            <span style="padding:5px 12px;background:rgba(255,255,255,0.18);border-radius:50px;font-size:0.82rem;color:rgba(255,255,255,0.95);">🤲 婆婆手工套袋</span>
-            <span style="padding:5px 12px;background:rgba(255,255,255,0.18);border-radius:50px;font-size:0.82rem;color:rgba(255,255,255,0.95);">🌄 爺爺清晨巡園</span>
-          </div>
-          <div style="display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap;">
-            <div style="text-align:center;">
-              <div style="font-size:1.8rem;font-weight:900;color:#FFF3E0;">2000m</div>
-              <div style="color:rgba(255,255,255,0.85);font-size:0.85rem;">種植海拔</div>
-            </div>
-            <div style="width:1px;background:rgba(255,255,255,0.35);"></div>
-            <div style="text-align:center;">
-              <div style="font-size:1.8rem;font-weight:900;color:#FFF3E0;">15°C+</div>
-              <div style="color:rgba(255,255,255,0.85);font-size:0.85rem;">日夜溫差</div>
-            </div>
-            <div style="width:1px;background:rgba(255,255,255,0.35);"></div>
-            <div style="text-align:center;">
-              <div style="font-size:1.8rem;font-weight:900;color:#FFF3E0;">一輩子</div>
-              <div style="color:rgba(255,255,255,0.85);font-size:0.85rem;">只種水蜜桃</div>
-            </div>
-          </div>
-          <a href="#quick-order" class="btn btn-white">🍑 立即預購水蜜桃</a>
-        </div>
-        <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
-          <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:16px;padding:20px 24px;text-align:center;backdrop-filter:blur(10px);min-width:130px;">
-            <div style="font-size:3rem;margin-bottom:8px;">👵</div>
-            <div style="color:white;font-weight:700;font-size:0.9rem;">婆婆的手</div>
-            <div style="color:rgba(255,255,255,0.8);font-size:0.78rem;">一顆一顆套袋</div>
-            <div style="margin-top:6px;padding:2px 8px;background:rgba(255,243,224,0.3);border-radius:50px;font-size:0.72rem;color:#FFF3E0;">呵護到出貨</div>
-          </div>
-          <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:16px;padding:20px 24px;text-align:center;backdrop-filter:blur(10px);min-width:130px;">
-            <div style="font-size:3rem;margin-bottom:8px;">👴</div>
-            <div style="color:white;font-weight:700;font-size:0.9rem;">爺爺的腳</div>
-            <div style="color:rgba(255,255,255,0.8);font-size:0.78rem;">天沒亮就巡園</div>
-            <div style="margin-top:6px;padding:2px 8px;background:rgba(255,243,224,0.3);border-radius:50px;font-size:0.72rem;color:#FFF3E0;">熟了才採</div>
-          </div>
-          <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:16px;padding:20px 24px;text-align:center;backdrop-filter:blur(10px);min-width:130px;">
-            <div style="font-size:3rem;margin-bottom:8px;">🏔️</div>
-            <div style="color:white;font-weight:700;font-size:0.9rem;">梨山的霧</div>
-            <div style="color:rgba(255,255,255,0.8);font-size:0.78rem;">日夜溫差15°C</div>
-            <div style="margin-top:6px;padding:2px 8px;background:rgba(255,243,224,0.3);border-radius:50px;font-size:0.72rem;color:#FFF3E0;">把糖鎖進果肉</div>
-          </div>
-          <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:16px;padding:20px 24px;text-align:center;backdrop-filter:blur(10px);min-width:130px;">
-            <div style="font-size:3rem;margin-bottom:8px;">❄️</div>
-            <div style="color:white;font-weight:700;font-size:0.9rem;">冷鏈直送</div>
-            <div style="color:rgba(255,255,255,0.8);font-size:0.78rem;">下山不過夜</div>
-            <div style="margin-top:6px;padding:2px 8px;background:rgba(255,243,224,0.3);border-radius:50px;font-size:0.72rem;color:#FFF3E0;">鮮度不妥協</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 水蜜桃知識 Banner -->
-  <section class="info-banner">
-    <div class="container">
-      <div class="info-banner-inner">
-        <div class="info-banner-content">
-          <span class="section-badge">水蜜桃小知識</span>
-          <h2>把水蜜桃吃到最好吃！</h2>
-          <p>怎麼挑、怎麼追熟、怎麼保存——婆婆爺爺種了一輩子的心得，都整理在這裡</p>
-          <a href="info.html" class="btn btn-white">探索水蜜桃知識庫</a>
-        </div>
-        <div class="info-banner-fruits">
-          <div class="floating-fruit" style="--delay:0s">🍑</div>
-          <div class="floating-fruit" style="--delay:0.5s">🌸</div>
-          <div class="floating-fruit" style="--delay:1s">🍑</div>
-          <div class="floating-fruit" style="--delay:1.5s">❄️</div>
-          <div class="floating-fruit" style="--delay:2s">🍑</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 顧客評價 -->
+  <!-- 真實開箱 -->
   <section class="testimonials">
     <div class="container">
       <div class="section-header">
-        <span class="section-badge">顧客好評</span>
-        <h2>他們都愛果然甜</h2>
+        <span class="section-badge">真實開箱</span>
+        <h2>顧客開箱・陸續更新中</h2>
+        <p>我們只放真實顧客的開箱照與回饋。收到水蜜桃後，歡迎拍照傳到 LINE 與我們分享，精選會放上這裡</p>
       </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p>「梨山水蜜桃真的太驚艷了！咬下去滿嘴蜜汁，香甜直衝腦門，小孩吃完還吵著要，已經連續三年回購了！」</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">👩</div>
-            <div>
-              <strong>陳小姐</strong>
-              <span>台北市</span>
-            </div>
+      <div style="text-align:center;">
+        <a href="https://lin.ee/5bs67zb" target="_blank" rel="noopener" style="display:inline-block;padding:14px 32px;background:#06C755;color:white;border-radius:50px;font-weight:800;text-decoration:none;box-shadow:0 8px 20px rgba(6,199,85,0.3);">💬 分享我的開箱照</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 常見問題 -->
+  <section class="features" style="background: white;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">購買須知</span>
+        <h2>常見問題</h2>
+        <p>運費、付款、出貨、售後，下單前先看這裡</p>
+      </div>
+      <div style="max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px;">
+        <details style="border: 1px solid #F5DDD0; border-radius: 12px; overflow: hidden; background: #FFF8F4;">
+          <summary style="padding: 16px 20px; font-weight: 700; cursor: pointer; user-select: none;">🚚 運費怎麼算？</summary>
+          <div style="padding: 16px 20px; font-size: 0.92rem; color: #6B4E3D; line-height: 1.9; border-top: 1px solid #F5DDD0; background: white;">
+            全程冷鏈配送：1～2盒 300 元、3～5盒 380 元、同一地址滿 6 盒<strong>免運</strong>（6、12、18、24…盒皆免運）。8～10盒採分箱配送確保品質。
           </div>
-        </div>
-        <div class="testimonial-card featured">
-          <div class="stars">★★★★★</div>
-          <p>「送了 5 粒裝給岳父，開箱那一刻全家驚嘆，每顆又大又香！老人家說這是他這輩子吃過最好吃的水蜜桃，馬上叫我再訂兩盒。」</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">👨</div>
-            <div>
-              <strong>林先生</strong>
-              <span>高雄市</span>
-            </div>
+        </details>
+        <details style="border: 1px solid #F5DDD0; border-radius: 12px; overflow: hidden; background: #FFF8F4;">
+          <summary style="padding: 16px 20px; font-weight: 700; cursor: pointer; user-select: none;">💳 怎麼付款？</summary>
+          <div style="padding: 16px 20px; font-size: 0.92rem; color: #6B4E3D; line-height: 1.9; border-top: 1px solid #F5DDD0; background: white;">
+            銀行轉帳。送出訂單後頁面會顯示<strong>彰化銀行（009）帳號與應付金額</strong>，請於 3 天內完成匯款，並到「<a href="payment.html" style="color:#E8845A;font-weight:700;">匯款回報</a>」填寫帳號末五碼，我們核對後即安排出貨。
           </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p>「冰過再吃真的絕了！果皮輕輕一撕就下來，咬一口蜜汁流滿手，小孩搶著吃。知道是梨山的爺爺婆婆種的，吃起來更暖。」</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">👩</div>
-            <div>
-              <strong>王小姐</strong>
-              <span>台中市</span>
-            </div>
+        </details>
+        <details style="border: 1px solid #F5DDD0; border-radius: 12px; overflow: hidden; background: #FFF8F4;">
+          <summary style="padding: 16px 20px; font-weight: 700; cursor: pointer; user-select: none;">📦 什麼時候出貨？</summary>
+          <div style="padding: 16px 20px; font-size: 0.92rem; color: #6B4E3D; line-height: 1.9; border-top: 1px solid #F5DDD0; background: white;">
+            匯款回報後 <strong>1 個工作天內</strong>完成款項核對。訂單確認後，依水蜜桃採收狀況及訂單順序安排出貨；<strong>出貨當天提供黑貓宅配單號</strong>，實際到貨時間以物流配送進度為準。宅配旺季恕無法指定到貨日期。
           </div>
-        </div>
+        </details>
+        <details style="border: 1px solid #F5DDD0; border-radius: 12px; overflow: hidden; background: #FFF8F4;">
+          <summary style="padding: 16px 20px; font-weight: 700; cursor: pointer; user-select: none;">🍑 收到後怎麼保存？</summary>
+          <div style="padding: 16px 20px; font-size: 0.92rem; color: #6B4E3D; line-height: 1.9; border-top: 1px solid #F5DDD0; background: white;">
+            收到請<strong>第一時間開箱檢查</strong>。偏硬先放室溫陰涼處 1-2 天追熟，微軟後再冷藏，冷藏不超過 3 天。更多秘訣見「<a href="info.html" style="color:#E8845A;font-weight:700;">水蜜桃知識</a>」。
+          </div>
+        </details>
+        <details style="border: 1px solid #F5DDD0; border-radius: 12px; overflow: hidden; background: #FFF8F4;">
+          <summary style="padding: 16px 20px; font-weight: 700; cursor: pointer; user-select: none;">🤝 有問題怎麼辦？（售後）</summary>
+          <div style="padding: 16px 20px; font-size: 0.92rem; color: #6B4E3D; line-height: 1.9; border-top: 1px solid #F5DDD0; background: white;">
+            水蜜桃為生鮮食品，依法不適用七日猶豫期；如有<strong>碰傷、腐壞或與訂購內容不符</strong>，請於<strong>到貨 24 小時內</strong>拍照透過 <a href="https://lin.ee/5bs67zb" target="_blank" rel="noopener" style="color:#06903E;font-weight:700;">LINE（@084pklgw）</a>聯繫，確認後補寄或退款。詳見「<a href="policy.html#returns" style="color:#E8845A;font-weight:700;">退換貨與售後政策</a>」。
+          </div>
+        </details>
+      </div>
+      <div style="text-align:center; margin-top: 24px;">
+        <a href="contact.html" style="color:#A08070; font-size:0.9rem;">更多問題 → 聯絡我們</a>
       </div>
     </div>
   </section>
@@ -388,9 +370,7 @@
           </a>
           <p>梨山水蜜桃專門店，<br>婆婆爺爺一輩子只種好這一顆甜</p>
           <div class="social-links">
-            <a href="#" class="social-link">📘 Facebook</a>
-            <a href="#" class="social-link">📸 Instagram</a>
-            <a href="https://lin.ee/5bs67zb" target="_blank" rel="noopener" class="social-link">💬 LINE</a>
+            <a href="https://lin.ee/5bs67zb" target="_blank" rel="noopener" class="social-link">💬 LINE 官方帳號 @084pklgw</a>
           </div>
         </div>
         <div class="footer-links">
@@ -406,29 +386,35 @@
         <div class="footer-links">
           <h4>服務說明</h4>
           <ul>
-            <li><a href="#">配送說明</a></li>
-            <li><a href="#">退換貨政策</a></li>
-            <li><a href="#">隱私權政策</a></li>
-            <li><a href="#">常見問題</a></li>
+            <li><a href="policy.html#delivery">配送說明</a></li>
+            <li><a href="policy.html#returns">退換貨與售後</a></li>
+            <li><a href="policy.html#privacy">隱私權政策</a></li>
+            <li><a href="contact.html">常見問題</a></li>
           </ul>
         </div>
         <div class="footer-contact">
-          <h4>聯絡資訊</h4>
-          <p>📞 (02) 1234-5678</p>
-          <p>📧 hello@guorantian.tw</p>
+          <h4>聯絡我們</h4>
+          <p>💬 LINE 官方帳號：<a href="https://lin.ee/5bs67zb" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">@084pklgw</a></p>
           <p>📍 台北市中山區農安街4號</p>
-          <p>🕐 週一至週六 09:00-18:00</p>
+          <p>🏔️ 產地：台中梨山（海拔2000公尺）</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 果然甜水果專賣店 版權所有</p>
+        <p>&copy; 2026 果然甜水果專賣店 版權所有</p>
       </div>
     </div>
   </footer>
 
-  <script src="src/js/data.js"></script>
-  <script src="src/js/cart.js"></script>
-  <script src="src/js/main.js"></script>
+  <script src="src/js/data.js?v=3"></script>
+  <script src="src/js/cart.js?v=3"></script>
+  <script src="src/js/order-sync.js?v=3"></script>
+  <script src="src/js/main.js?v=3"></script>
+  <!-- 手機底部固定雙按鈕 -->
+  <div class="mobile-cta-bar">
+    <a href="#quick-order" class="mcb-order">🍑 立即預購</a>
+    <a href="https://lin.ee/5bs67zb" target="_blank" rel="noopener" class="mcb-line">💬 LINE 詢問</a>
+  </div>
+
   <!-- LINE 浮動按鈕 -->
   <a href="https://lin.ee/5bs67zb" target="_blank" rel="noopener" class="line-float" aria-label="加入果然甜 LINE 官方帳號">
     <span>💬</span><span class="line-float-text">LINE 訂購諮詢</span>

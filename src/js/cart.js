@@ -67,6 +67,7 @@ const Cart = {
       countEl.style.display = count > 0 ? 'flex' : 'none';
     }
     renderCartBar();
+    if (typeof renderHomeCheckout === 'function') renderHomeCheckout();
   },
 
   showToast(message) {
@@ -100,7 +101,6 @@ function calcShipping(boxCount) {
 // 產品卡片生成器
 function createProductCard(fruit, showAddToCart = true) {
   const tagHtml = fruit.tags.map(t => `<span class="tag">${t}</span>`).join('');
-  const stars = '★'.repeat(Math.floor(fruit.rating)) + (fruit.rating % 1 >= 0.5 ? '½' : '');
 
   return `
     <div class="product-card ${!fruit.inStock ? 'out-of-stock' : ''}" data-id="${fruit.id}">
@@ -113,7 +113,7 @@ function createProductCard(fruit, showAddToCart = true) {
         <h3 class="product-name">${fruit.name}</h3>
         <div class="product-meta">
           <span>📍 ${fruit.origin}</span>
-          <span>🍬 糖度 ${fruit.sugar}</span>
+          <span>🏔️ 海拔2000公尺</span>
         </div>
         <p class="product-desc">${fruit.description.substring(0, 50)}...</p>
         <div class="product-footer">
@@ -121,10 +121,6 @@ function createProductCard(fruit, showAddToCart = true) {
             <span class="price-label">NT$</span>
             <span class="price-amount">${fruit.price}</span>
             <span class="price-unit">/${fruit.unit}</span>
-          </div>
-          <div class="product-rating">
-            <span class="stars">${stars}</span>
-            <span class="review-count">(${fruit.reviews})</span>
           </div>
         </div>
         ${showAddToCart ? `
@@ -180,7 +176,7 @@ function renderCartBar() {
         <span class="cart-bar-hint">${hint}</span>
       </div>
       <div class="cart-bar-total">NT$ ${total.toLocaleString()}</div>
-      <a href="cart.html" class="cart-bar-btn">去結帳 →</a>
+      <a href="${document.getElementById('home-checkout') ? '#home-checkout' : 'cart.html'}" class="cart-bar-btn">去結帳 →</a>
     </div>`;
 }
 
