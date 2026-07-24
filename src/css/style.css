@@ -1421,28 +1421,51 @@ ul { list-style: none; }
   gap: 20px;
 }
 
+/* 季節卡（設計師版）：每卡以 --sc 帶入季節主題色 */
 .season-card {
   background: white;
   border-radius: var(--radius);
-  padding: 28px 20px;
-  text-align: center;
+  padding: 22px 20px 20px;
+  text-align: left;
+  position: relative;
   box-shadow: var(--shadow);
-  border: 2px solid var(--border);
   transition: var(--transition);
 }
 
-.season-card:hover { transform: translateY(-6px); border-color: var(--primary); }
-.season-icon { font-size: 2.5rem; margin-bottom: 12px; }
-.season-card h3 { font-weight: 800; margin-bottom: 12px; }
-.season-fruits { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
-.season-fruit-tag {
-  padding: 4px 10px;
-  background: #FFE8DC;
-  color: var(--primary);
+.season-card:hover { transform: translateY(-6px); }
+.season-month { font-size: 2.1rem; font-weight: 900; color: var(--sc); line-height: 1; }
+.season-month span { font-size: 1.05rem; margin-left: 2px; }
+.season-name {
+  display: inline-block;
+  background: var(--sc);
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 4px 16px;
   border-radius: 50px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  margin: 12px 0 14px;
 }
+.season-tag { font-weight: 700; color: var(--text-dark); margin: 3px 0; }
+.season-note {
+  color: var(--text-mid);
+  font-size: 0.87rem;
+  line-height: 1.6;
+  margin-top: 10px;
+  padding-right: 52px;
+}
+.season-badge-icon {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--sc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.season-badge-icon svg { width: 26px; height: 26px; fill: white; }
 
 /* ===== CHECKOUT SUCCESS ===== */
 .success-section {
