@@ -4,9 +4,8 @@
 // 完整設定步驟請見 docs/訂單串接設定說明.md，後端程式碼在 docs/google-apps-script.gs。
 
 const ORDER_SYNC = {
-  // ★ 店主注意：部署 Google Apps Script 後，把「網頁應用程式」網址貼到這裡
-  //（格式：https://script.google.com/macros/s/XXXX/exec）
-  webhookUrl: '',
+  // Google Apps Script 網頁應用程式網址（訂單自動登記到 Google Sheet）
+  webhookUrl: 'https://script.google.com/macros/s/AKfycbxG_MJd-hgjWj2k1pWEzKCWguvMc8t2gJa-s-E_latOwDp2aYRa_JFcdTUN7DMODP1o/exec',
 
   // LINE 官方帳號加好友連結（全站共用）
   lineUrl: 'https://lin.ee/5bs67zb',
