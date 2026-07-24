@@ -127,6 +127,61 @@
     </div>
   </section>
 
+  <!-- 首頁一頁式結帳 -->
+  <section id="home-checkout" class="quick-order" style="padding-top: 0; display: none;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">最後一步</span>
+        <h2>📝 填資料，完成訂購</h2>
+        <p>不用註冊、不用 Email，填好收件資料送出就完成</p>
+      </div>
+      <div class="hc-layout">
+        <form id="homeOrderForm" class="hc-form">
+          <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div>
+              <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">收件人姓名 *</label>
+              <input type="text" id="hcName" placeholder="請輸入真實姓名" required style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;background:white;">
+            </div>
+            <div>
+              <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">聯絡電話 *</label>
+              <input type="tel" id="hcPhone" placeholder="0912-345-678" required style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;background:white;">
+            </div>
+          </div>
+          <div style="margin-top:14px;">
+            <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">收件地址 *</label>
+            <input type="text" id="hcAddress" placeholder="請輸入完整收件地址" required style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;background:white;">
+          </div>
+          <div style="margin-top:14px;">
+            <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">收件處是否有警衛室可代收？ *</label>
+            <select id="hcGuard" required style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;font-family:inherit;background:white;color:#3D2B1F;">
+              <option value="" disabled selected>請選擇（冷藏配送，這能幫我們順利送達）</option>
+              <option value="有警衛室可代收">🏢 有警衛室／管理室，可代收</option>
+              <option value="無警衛室">🏠 無警衛室，請直接送到府上</option>
+              <option value="不確定">🤔 不確定</option>
+            </select>
+          </div>
+          <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;">
+            <div>
+              <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">LINE ID（選填）</label>
+              <input type="text" id="hcLine" placeholder="方便到貨通知" style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;background:white;">
+            </div>
+            <div>
+              <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">Email（選填）</label>
+              <input type="email" id="hcEmail" placeholder="example@email.com" style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;background:white;">
+            </div>
+          </div>
+          <div style="margin-top:14px;">
+            <label style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">備註（選填）</label>
+            <textarea id="hcNote" placeholder="如有特殊需求請說明（宅配旺季恕無法指定到貨日期）" style="width:100%;padding:12px 14px;border:2px solid #F5DDD0;border-radius:8px;font-size:0.95rem;outline:none;min-height:60px;resize:vertical;font-family:inherit;background:white;"></textarea>
+          </div>
+          <button type="submit" class="checkout-btn" style="width:100%;margin-top:18px;padding:16px;background:linear-gradient(135deg,#E8845A,#C96A42);color:white;border:none;border-radius:50px;font-size:1.1rem;font-weight:800;cursor:pointer;font-family:inherit;">✅ 確認送出訂單</button>
+          <p style="font-size:0.78rem;color:#A08070;margin-top:10px;text-align:center;line-height:1.7;">送出訂單即表示同意 <a href="policy.html" target="_blank" style="color:#E8845A;font-weight:700;">購物條款與退換貨政策</a>（生鮮食品不適用七日猶豫期）</p>
+        </form>
+        <div class="hc-summary" id="hcSummary"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- 2026 上海水蜜桃預購公告 -->
   <section id="peach-preorder" style="padding: 64px 0 24px; background: #FFF8F4;">
     <div class="container">
@@ -352,6 +407,7 @@
 
   <script src="src/js/data.js?v=3"></script>
   <script src="src/js/cart.js?v=3"></script>
+  <script src="src/js/order-sync.js?v=3"></script>
   <script src="src/js/main.js?v=3"></script>
   <!-- 手機底部固定雙按鈕 -->
   <div class="mobile-cta-bar">

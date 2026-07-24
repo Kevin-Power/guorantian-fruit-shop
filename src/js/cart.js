@@ -67,6 +67,7 @@ const Cart = {
       countEl.style.display = count > 0 ? 'flex' : 'none';
     }
     renderCartBar();
+    if (typeof renderHomeCheckout === 'function') renderHomeCheckout();
   },
 
   showToast(message) {
@@ -175,7 +176,7 @@ function renderCartBar() {
         <span class="cart-bar-hint">${hint}</span>
       </div>
       <div class="cart-bar-total">NT$ ${total.toLocaleString()}</div>
-      <a href="cart.html" class="cart-bar-btn">去結帳 →</a>
+      <a href="${document.getElementById('home-checkout') ? '#home-checkout' : 'cart.html'}" class="cart-bar-btn">去結帳 →</a>
     </div>`;
 }
 
