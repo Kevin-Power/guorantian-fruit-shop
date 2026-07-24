@@ -1973,3 +1973,17 @@ body.has-cartbar .line-float { bottom: 88px; }
   .qo-add { padding: 11px 6px; font-size: 0.88rem; }
   .hero-stats { border-radius: 12px; }
 }
+
+/* ===== 知識庫頁：卡片直接往上貼進 hero ===== */
+.page-info .page-hero { padding: 130px 0 120px; }
+.page-info .info-section {
+  padding: 0 0 56px;
+  margin-top: -88px;
+  position: relative;
+  z-index: 2;
+}
+.page-info .knowledge-card { box-shadow: 0 10px 30px rgba(200, 100, 50, 0.14); }
+@media (max-width: 768px) {
+  .page-info .page-hero { padding: 104px 0 96px; }
+  .page-info .info-section { margin-top: -64px; padding-bottom: 40px; }
+}
