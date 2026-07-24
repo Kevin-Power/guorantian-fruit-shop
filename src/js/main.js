@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const qoBadges = { 13: '🏠 自家吃首選', 21: '🔥 回購 No.1', 22: '🎁 送禮首選', 23: '👑 頂級限量' };
     const peaches = fruitsData.filter(f => qoBadges[f.id]);
     qoGrid.innerHTML = peaches.map(f => {
-      const spec = f.name.replace('梨山牛奶水蜜桃 ', '');
+      const spec = f.name.replace(/梨山(牛奶|上海蜜)水蜜桃 /, '');
       const weight = f.unit.replace(/^盒（/, '').replace(/）$/, '');
       return `
         <div class="qo-card ${f.id === 23 ? 'qo-limited' : ''}">
@@ -109,7 +109,7 @@ function renderHomeCheckout() {
     <h3 style="font-size:1.15rem;font-weight:800;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid #F5DDD0;">🧾 訂單摘要</h3>
     ${Cart.items.map(i => `
       <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:0.9rem;">
-        <span>${i.emoji} ${i.name.replace('梨山牛奶水蜜桃 ', '水蜜桃 ')} × ${i.quantity}盒</span>
+        <span>${i.emoji} ${i.name.replace(/梨山(牛奶|上海蜜)水蜜桃 /, '水蜜桃 ')} × ${i.quantity}盒</span>
         <span style="font-weight:700;">NT$ ${(i.price * i.quantity).toLocaleString()}</span>
       </div>`).join('')}
     <div style="border-top:1px dashed #F5DDD0;margin-top:10px;padding-top:10px;font-size:0.9rem;">
