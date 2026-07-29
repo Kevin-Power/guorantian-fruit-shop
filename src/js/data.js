@@ -3,6 +3,7 @@
 const fruitsData = [
   {
     id: 13,
+    photo: "src/img/photo-8box.jpg",
     img: "src/img/sticker-box.png",
     name: "梨山上海蜜水蜜桃 8粒裝",
     emoji: "🍑",
@@ -20,6 +21,7 @@ const fruitsData = [
   },
   {
     id: 21,
+    photo: "src/img/photo-6box.jpg",
     img: "src/img/sticker-pair.png",
     name: "梨山上海蜜水蜜桃 6粒裝",
     emoji: "🍑",
@@ -37,6 +39,7 @@ const fruitsData = [
   },
   {
     id: 22,
+    photo: "src/img/photo-5box.jpg",
     img: "src/img/sticker-sparkle.png",
     name: "梨山上海蜜水蜜桃 5粒裝",
     emoji: "🍑",
@@ -54,6 +57,7 @@ const fruitsData = [
   },
   {
     id: 23,
+    photo: "src/img/photo-5big.jpg",
     img: "src/img/sticker-crown.png",
     name: "梨山上海蜜水蜜桃 5大裝",
     emoji: "🍑",
