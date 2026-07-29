@@ -104,8 +104,10 @@ function createProductCard(fruit, showAddToCart = true) {
 
   return `
     <div class="product-card ${!fruit.inStock ? 'out-of-stock' : ''}" data-id="${fruit.id}">
-      <div class="product-emoji-wrap">
-        ${fruit.img ? `<img class="product-art" src="${fruit.img}" alt="${fruit.name}">` : `<div class="product-emoji">${fruit.emoji}</div>`}
+      <div class="product-emoji-wrap ${fruit.photo ? 'has-photo' : ''}">
+        ${fruit.photo
+          ? `<img class="product-photo" src="${fruit.photo}" alt="${fruit.name} 出貨實拍" loading="lazy">${fruit.img ? `<img class="product-photo-badge" src="${fruit.img}" alt="">` : ''}`
+          : fruit.img ? `<img class="product-art" src="${fruit.img}" alt="${fruit.name}">` : `<div class="product-emoji">${fruit.emoji}</div>`}
         ${!fruit.inStock ? '<div class="sold-out-badge">已售完</div>' : ''}
       </div>
       <div class="product-info">
