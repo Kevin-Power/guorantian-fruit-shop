@@ -1,3 +1,6 @@
+// 2026 上海蜜產季已完售
+const SOLD_OUT = true;
+
 // 商品資料庫 — 果然甜只賣一樣東西：梨山上海蜜品種水蜜桃
 // 規格：8粒(5-6兩)750 / 6粒(6-7兩)850 / 5粒(7-8兩)950 / 5大(8兩以上,限量)1100
 const fruitsData = [
@@ -17,7 +20,7 @@ const fruitsData = [
     tags: ["當季", "高山限定", "全程冷鏈"],
     rating: 5.0,
     reviews: 312,
-    inStock: true
+    inStock: false
   },
   {
     id: 21,
@@ -35,7 +38,7 @@ const fruitsData = [
     tags: ["熱銷", "高山限定", "全程冷鏈"],
     rating: 5.0,
     reviews: 286,
-    inStock: true
+    inStock: false
   },
   {
     id: 22,
@@ -53,7 +56,7 @@ const fruitsData = [
     tags: ["送禮首選", "高山限定", "全程冷鏈"],
     rating: 5.0,
     reviews: 194,
-    inStock: true
+    inStock: false
   },
   {
     id: 23,
@@ -71,7 +74,7 @@ const fruitsData = [
     tags: ["限量", "可預訂", "頂級"],
     rating: 5.0,
     reviews: 87,
-    inStock: true
+    inStock: false
   }
 ];
 

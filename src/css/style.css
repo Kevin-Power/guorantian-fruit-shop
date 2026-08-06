@@ -1732,6 +1732,14 @@ html { scroll-behavior: smooth; }
 .qo-badge { font-size: 0.8rem; color: var(--text-light); font-weight: 700; margin-bottom: 4px; }
 .qo-emoji { font-size: 2.6rem; margin-bottom: 2px; }
 .qo-art { width: 64px; height: 64px; object-fit: contain; display: block; margin: 0 auto 4px; }
+.qo-sold {
+  margin-top: 12px;
+  padding: 10px;
+  background: #FFF3EC;
+  border-radius: 10px;
+  font-weight: 800;
+  color: #C96A42;
+}
 .qo-title { font-size: 1.3rem; font-weight: 900; margin-bottom: 2px; }
 .qo-weight { font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px; }
 .qo-price { font-size: 1.9rem; font-weight: 900; color: var(--primary); margin-bottom: 12px; line-height: 1; }

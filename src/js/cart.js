@@ -129,7 +129,7 @@ function createProductCard(fruit, showAddToCart = true) {
         <button class="btn-add-cart ${!fruit.inStock ? 'disabled' : ''}"
           onclick="handleAddToCart(${fruit.id})"
           ${!fruit.inStock ? 'disabled' : ''}>
-          ${fruit.inStock ? '🛒 加入購物車' : '❌ 暫時缺貨'}
+          ${fruit.inStock ? '🛒 加入購物車' : '🙏 本季完售，感謝支持'}
         </button>` : ''}
       </div>
     </div>
