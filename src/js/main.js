@@ -39,13 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
           <h3 class="qo-title">${spec}</h3>
           <div class="qo-weight">${weight}</div>
           <div class="qo-price"><span class="qo-cur">NT$</span>${f.price.toLocaleString()}<span class="qo-unit">／盒</span></div>
-          ${f.id === 23 ? '<div class="qo-preorder-note">限量預訂・依採收供貨</div>' : ''}
+          ${typeof SOLD_OUT !== 'undefined' && SOLD_OUT
+            ? '<div class="qo-sold">🙏 本季完售</div>'
+            : `${f.id === 23 ? '<div class="qo-preorder-note">限量預訂・依採收供貨</div>' : ''}
           <div class="qo-qty">
             <button class="qo-qty-btn" onclick="qoChangeQty(${f.id}, -1)">−</button>
             <span class="qo-qty-num" id="qoQty-${f.id}">1</span>
             <button class="qo-qty-btn" onclick="qoChangeQty(${f.id}, 1)">+</button>
           </div>
-          <button class="qo-add" onclick="qoAdd(${f.id})">加入購物車</button>
+          <button class="qo-add" onclick="qoAdd(${f.id})">加入購物車</button>`}
         </div>`;
     }).join('');
   }
@@ -125,6 +127,7 @@ function renderHomeCheckout() {
 }
 
 function submitHomeOrder() {
+  if (typeof SOLD_OUT !== 'undefined' && SOLD_OUT) return;
   if (Cart.items.length === 0) return;
   const subtotal = Cart.getTotal();
   const shipping = calcShipping(Cart.getCount());
