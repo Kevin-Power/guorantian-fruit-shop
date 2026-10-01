@@ -38,7 +38,7 @@ const ORDER_SYNC = {
       .map(i => `${i.name} x${i.quantity}盒`)
       .join('\n');
     return [
-      '🍑 果然甜訂單通知',
+      `${typeof SEASON !== 'undefined' ? SEASON.emoji : '🍑'} 果然甜訂單通知`,
       `訂單編號：${order.orderNo}`,
       `訂購人：${order.customer.name}`,
       `電話：${order.customer.phone}`,

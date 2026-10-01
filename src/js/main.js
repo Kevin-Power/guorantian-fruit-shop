@@ -23,33 +23,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 渲染首頁快速訂購（水蜜桃四規格）
+  // 渲染首頁快速訂購（當季各規格，資料來自 data.js）
   const qoGrid = document.getElementById('quickOrderGrid');
   if (qoGrid) {
-    const qoBadges = { 13: '🏠 自家吃首選', 21: '🔥 回購 No.1', 22: '🎁 送禮首選', 23: '👑 頂級限量' };
-    const peaches = fruitsData.filter(f => qoBadges[f.id]);
-    qoGrid.innerHTML = peaches.map(f => {
-      const spec = f.name.replace(/梨山(牛奶|上海蜜)水蜜桃 /, '');
+    const soldOut = typeof SOLD_OUT !== 'undefined' && SOLD_OUT;
+    qoGrid.innerHTML = fruitsData.map(f => {
       const weight = f.unit.replace(/^盒（/, '').replace(/）$/, '');
-      return `
-        <div class="qo-card ${f.id === 23 ? 'qo-limited' : ''}">
-          ${f.id === 21 ? '<div class="qo-flag">最多人買</div>' : ''}
-          <div class="qo-badge">${qoBadges[f.id]}</div>
-          ${f.img ? `<img class="qo-art" src="${f.img}" alt="">` : '<div class="qo-emoji">🍑</div>'}
-          <h3 class="qo-title">${spec}</h3>
-          <div class="qo-weight">${weight}</div>
-          <div class="qo-price"><span class="qo-cur">NT$</span>${f.price.toLocaleString()}<span class="qo-unit">／盒</span></div>
-          ${typeof SOLD_OUT !== 'undefined' && SOLD_OUT
-            ? '<div class="qo-sold">🙏 本季完售</div>'
-            : `${f.id === 23 ? '<div class="qo-preorder-note">限量預訂・依採收供貨</div>' : ''}
+      let action;
+      if (soldOut || !f.inStock) {
+        action = '<div class="qo-sold">🙏 本季完售</div>';
+      } else if (f.price == null) {
+        action = '<div class="qo-sold qo-soon">⏳ 即將開賣</div>';
+      } else {
+        action = `${f.note ? `<div class="qo-preorder-note">${f.note}</div>` : ''}
           <div class="qo-qty">
             <button class="qo-qty-btn" onclick="qoChangeQty(${f.id}, -1)">−</button>
             <span class="qo-qty-num" id="qoQty-${f.id}">1</span>
             <button class="qo-qty-btn" onclick="qoChangeQty(${f.id}, 1)">+</button>
           </div>
-          <button class="qo-add" onclick="qoAdd(${f.id})">加入購物車</button>`}
+          <button class="qo-add" onclick="qoAdd(${f.id})">加入購物車</button>`;
+      }
+      return `
+        <div class="qo-card ${f.limited ? 'qo-limited' : ''}">
+          ${f.flag ? `<div class="qo-flag">${f.flag}</div>` : ''}
+          ${f.badge ? `<div class="qo-badge">${f.badge}</div>` : ''}
+          ${f.img ? `<img class="qo-art" src="${f.img}" alt="">` : `<div class="qo-emoji">${f.emoji}</div>`}
+          <h3 class="qo-title">${f.spec || f.name}</h3>
+          <div class="qo-weight">${weight}</div>
+          <div class="qo-price">${f.price != null
+            ? `<span class="qo-cur">NT$</span>${f.price.toLocaleString()}<span class="qo-unit">／盒</span>`
+            : '<span class="qo-tbd">價格確認中</span>'}</div>
+          ${action}
         </div>`;
     }).join('');
+  }
+
+  // 首頁主視覺價目卡、公告價目表（同一份商品資料）
+  const priceText = f => f.price != null ? `NT$ ${f.price.toLocaleString()}` : '確認中';
+  const heroRows = document.getElementById('heroPriceRows');
+  if (heroRows) {
+    heroRows.innerHTML = fruitsData.map(f => `
+      <div class="hpc-row"><span class="hpc-spec">${f.spec || f.name}${f.size ? ` <small>${f.size}</small>` : ''}</span><span class="hpc-price">${priceText(f)}</span></div>`).join('');
+  }
+  const announceRows = document.getElementById('announceSpecRows');
+  if (announceRows) {
+    announceRows.innerHTML = fruitsData.map(f => `
+      <tr${f.limited ? ' style="background: #FFF3E8;"' : ''}>
+        <td style="padding: 10px 14px; border-bottom: 1px solid #F5DDD0;">⭐️ ${f.spec || f.name}${f.limited ? ' <span style="font-size: 0.78rem; background: #E8845A; color: white; border-radius: 50px; padding: 2px 8px; margin-left: 4px;">限量</span>' : ''}</td>
+        <td style="padding: 10px 14px; border-bottom: 1px solid #F5DDD0;">${f.size || f.unit}</td>
+        <td style="padding: 10px 14px; border-bottom: 1px solid #F5DDD0; text-align: right; font-weight: 800; color: #E8845A;">${f.price != null ? f.price.toLocaleString() + ' 元／盒' : '確認中'}</td>
+      </tr>`).join('');
   }
 
   // 滾動動畫 - animate-in for cards
@@ -106,20 +129,20 @@ function renderHomeCheckout() {
   const subtotal = Cart.getTotal();
   const shipping = calcShipping(boxes);
   const total = subtotal + shipping;
-  const remainder = boxes % 6;
+  const need = boxesToFreeShipping(boxes);
   const hint = shipping === 0
-    ? `🎉 ${boxes} 盒（6的倍數）享免運優惠`
-    : `目前 ${boxes} 盒，再加 ${6 - remainder} 盒湊滿 6 的倍數即免運`;
+    ? `🎉 ${boxes} 盒（${SHIPPING.freeEvery}的倍數）享免運優惠`
+    : `目前 ${boxes} 盒，再加 ${need} 盒湊滿 ${SHIPPING.freeEvery} 的倍數即免運`;
   document.getElementById('hcSummary').innerHTML = `
     <h3 style="font-size:1.15rem;font-weight:800;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid #F5DDD0;">🧾 訂單摘要</h3>
     ${Cart.items.map(i => `
       <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:0.9rem;">
-        <span>${i.emoji} ${i.name.replace(/梨山(牛奶|上海蜜)水蜜桃 /, '水蜜桃 ')} × ${i.quantity}盒</span>
+        <span>${i.emoji} ${i.name} × ${i.quantity}盒</span>
         <span style="font-weight:700;">NT$ ${(i.price * i.quantity).toLocaleString()}</span>
       </div>`).join('')}
     <div style="border-top:1px dashed #F5DDD0;margin-top:10px;padding-top:10px;font-size:0.9rem;">
       <div style="display:flex;justify-content:space-between;padding:3px 0;"><span>商品小計</span><span>NT$ ${subtotal.toLocaleString()}</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;"><span>冷鏈運費</span><span>${shipping === 0 ? '<strong style="color:#7BAE84;">免運費</strong>' : 'NT$ ' + shipping}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;"><span>${SHIPPING.label}</span><span>${shipping === 0 ? '<strong style="color:#7BAE84;">免運費</strong>' : 'NT$ ' + shipping}</span></div>
       <div style="display:flex;justify-content:space-between;padding:10px 0 0;font-size:1.2rem;font-weight:900;color:#E8845A;border-top:2px solid #F5DDD0;margin-top:8px;"><span>應付總額</span><span>NT$ ${total.toLocaleString()}</span></div>
     </div>
     <div style="margin-top:10px;padding:9px 12px;background:#FFF8F4;border-radius:8px;font-size:0.8rem;color:#E8845A;font-weight:700;text-align:center;">${hint}</div>

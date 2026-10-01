@@ -1,6 +1,17 @@
 // 購物車管理
 const Cart = {
-  items: JSON.parse(localStorage.getItem('cartItems') || '[]'),
+  // 只保留本季可購買的商品，並以最新資料更新名稱與價格
+  //（避免顧客瀏覽器裡殘留上一季的購物車被拿去結帳）
+  items: (() => {
+    let saved = [];
+    try { saved = JSON.parse(localStorage.getItem('cartItems') || '[]'); } catch (e) { saved = []; }
+    return saved.map(i => {
+      const f = fruitsData.find(x => x.id === i.id);
+      return f && isBuyable(f)
+        ? { id: f.id, name: f.name, emoji: f.emoji, price: f.price, unit: f.unit, quantity: i.quantity }
+        : null;
+    }).filter(Boolean);
+  })(),
 
   save() {
     localStorage.setItem('cartItems', JSON.stringify(this.items));
@@ -9,7 +20,7 @@ const Cart = {
 
   add(fruitId, quantity = 1) {
     const fruit = fruitsData.find(f => f.id === fruitId);
-    if (!fruit || !fruit.inStock) return false;
+    if (!fruit || !isBuyable(fruit)) return false;
 
     const existing = this.items.find(i => i.id === fruitId);
     if (existing) {
@@ -87,20 +98,32 @@ const Cart = {
   }
 };
 
-// ===== 全程冷鏈配送運費 =====
-// 1～2盒 300 元、3～5盒 380 元、同一地址滿6盒免運；
-// 6的倍數（6、12、18、24…盒）皆免運，超出的餘數盒數依上述級距計費。
-// 8～10盒採全冷鏈分箱配送，確保配送品質（不另收費）。
+// ===== 運費（規則設定在 data.js 的 SHIPPING）=====
+// freeEvery 的倍數（例如 6、12、18…盒）免運，超出的餘數盒數依 tiers 級距計費
 function calcShipping(boxCount) {
   if (boxCount <= 0) return 0;
-  const remainder = boxCount % 6;
+  const remainder = boxCount % SHIPPING.freeEvery;
   if (remainder === 0) return 0;
-  return remainder <= 2 ? 300 : 380;
+  const tier = SHIPPING.tiers.find(t => remainder <= t.upTo) || SHIPPING.tiers[SHIPPING.tiers.length - 1];
+  return tier.fee;
+}
+
+// 距離免運還差幾盒（已免運回傳 0）
+function boxesToFreeShipping(boxCount) {
+  const remainder = boxCount % SHIPPING.freeEvery;
+  return remainder === 0 ? 0 : SHIPPING.freeEvery - remainder;
+}
+
+// 這個商品現在能不能下單：有貨、已定價、本季未完售
+function isBuyable(fruit) {
+  return fruit.inStock && fruit.price != null && !(typeof SOLD_OUT !== 'undefined' && SOLD_OUT);
 }
 
 // 產品卡片生成器
 function createProductCard(fruit, showAddToCart = true) {
   const tagHtml = fruit.tags.map(t => `<span class="tag">${t}</span>`).join('');
+  const buyable = isBuyable(fruit);
+  const soldOut = !fruit.inStock || (typeof SOLD_OUT !== 'undefined' && SOLD_OUT);
 
   return `
     <div class="product-card ${!fruit.inStock ? 'out-of-stock' : ''}" data-id="${fruit.id}">
@@ -120,16 +143,18 @@ function createProductCard(fruit, showAddToCart = true) {
         <p class="product-desc">${fruit.description.substring(0, 50)}...</p>
         <div class="product-footer">
           <div class="product-price">
+            ${fruit.price != null ? `
             <span class="price-label">NT$</span>
-            <span class="price-amount">${fruit.price}</span>
+            <span class="price-amount">${fruit.price.toLocaleString()}</span>` : `
+            <span class="price-tbd">價格確認中</span>`}
             <span class="price-unit">/${fruit.unit}</span>
           </div>
         </div>
         ${showAddToCart ? `
-        <button class="btn-add-cart ${!fruit.inStock ? 'disabled' : ''}"
+        <button class="btn-add-cart ${!buyable ? 'disabled' : ''}"
           onclick="handleAddToCart(${fruit.id})"
-          ${!fruit.inStock ? 'disabled' : ''}>
-          ${fruit.inStock ? '🛒 加入購物車' : '🙏 本季完售，感謝支持'}
+          ${!buyable ? 'disabled' : ''}>
+          ${buyable ? '🛒 加入購物車' : soldOut ? '🙏 本季完售，感謝支持' : '⏳ 即將開賣'}
         </button>` : ''}
       </div>
     </div>
@@ -137,7 +162,7 @@ function createProductCard(fruit, showAddToCart = true) {
 }
 
 function handleAddToCart(fruitId) {
-  Cart.add(fruitId);
+  if (!Cart.add(fruitId)) return;
   const btn = document.querySelector(`[data-id="${fruitId}"] .btn-add-cart`);
   if (btn) {
     btn.textContent = '✅ 已加入！';
@@ -161,8 +186,8 @@ function renderCartBar() {
   }
   const shipping = calcShipping(boxes);
   const total = Cart.getTotal() + shipping;
-  const remainder = boxes % 6;
-  const hint = remainder === 0 ? '🎉 已達免運' : `再 ${6 - remainder} 盒免運`;
+  const need = boxesToFreeShipping(boxes);
+  const hint = need === 0 ? '🎉 已達免運' : `再 ${need} 盒免運`;
   if (!bar) {
     bar = document.createElement('div');
     bar.id = 'cartBar';
@@ -181,6 +206,9 @@ function renderCartBar() {
       <a href="${document.getElementById('home-checkout') ? '#home-checkout' : 'cart.html'}" class="cart-bar-btn">去結帳 →</a>
     </div>`;
 }
+
+// 把清理過的購物車存回瀏覽器
+try { localStorage.setItem('cartItems', JSON.stringify(Cart.items)); } catch (e) {}
 
 // 初始化購物車數量
 document.addEventListener('DOMContentLoaded', () => {
