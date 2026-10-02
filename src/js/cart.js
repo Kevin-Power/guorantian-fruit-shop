@@ -98,20 +98,38 @@ const Cart = {
   }
 };
 
-// ===== 運費（規則設定在 data.js 的 SHIPPING）=====
-// freeEvery 的倍數（例如 6、12、18…盒）免運，超出的餘數盒數依 tiers 級距計費
+// ===== 運費（規則設定在 data.js 的 SHIPPING_RULES）=====
+// freeFrom：同一地址滿 N 盒免運；freeEvery：N 的倍數免運，餘數盒數依 tiers 級距計費
 function calcShipping(boxCount) {
   if (boxCount <= 0) return 0;
-  const remainder = boxCount % SHIPPING.freeEvery;
-  if (remainder === 0) return 0;
-  const tier = SHIPPING.tiers.find(t => remainder <= t.upTo) || SHIPPING.tiers[SHIPPING.tiers.length - 1];
+  if (SHIPPING.freeFrom && boxCount >= SHIPPING.freeFrom) return 0;
+  let billable = boxCount;
+  if (SHIPPING.freeEvery) {
+    billable = boxCount % SHIPPING.freeEvery;
+    if (billable === 0) return 0;
+  }
+  const tier = SHIPPING.tiers.find(t => billable <= t.upTo) || SHIPPING.tiers[SHIPPING.tiers.length - 1];
   return tier.fee;
 }
 
 // 距離免運還差幾盒（已免運回傳 0）
 function boxesToFreeShipping(boxCount) {
+  if (SHIPPING.freeFrom) return Math.max(0, SHIPPING.freeFrom - boxCount);
   const remainder = boxCount % SHIPPING.freeEvery;
   return remainder === 0 ? 0 : SHIPPING.freeEvery - remainder;
+}
+
+// 免運提示文字（購物車、結帳摘要共用）
+function shippingHint(boxCount) {
+  const need = boxesToFreeShipping(boxCount);
+  if (need === 0) {
+    return SHIPPING.freeFrom
+      ? `🎉 ${boxCount} 盒，同一地址享免運`
+      : `🎉 ${boxCount} 盒（${SHIPPING.freeEvery}的倍數）享免運優惠`;
+  }
+  return SHIPPING.freeFrom
+    ? `目前 ${boxCount} 盒，再加 ${need} 盒（同一地址滿 ${SHIPPING.freeFrom} 盒）即享免運`
+    : `目前 ${boxCount} 盒，再加 ${need} 盒湊滿 ${SHIPPING.freeEvery} 的倍數即享免運`;
 }
 
 // 這個商品現在能不能下單：有貨、已定價、本季未完售

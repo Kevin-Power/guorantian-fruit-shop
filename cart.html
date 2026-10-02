@@ -6,7 +6,7 @@
   <title>購物車 - 果然甜</title>
   <meta name="description" content="果然甜購物車 — 確認您預購的梨山當季水果，產地直送到府。">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍑</text></svg>">
-  <link rel="stylesheet" href="src/css/style.css?v=18">
+  <link rel="stylesheet" href="src/css/style.css?v=19">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -80,11 +80,11 @@
             <span id="subtotal">NT$ 0</span>
           </div>
           <div class="summary-row">
-            <span>冷鏈運費</span>
+            <span>運費</span>
             <span id="shipping">NT$ 0</span>
           </div>
           <div class="summary-row" id="freeShippingRow" style="display:none;">
-            <span style="color: #7BAE84;">🎉 滿6盒免運優惠</span>
+            <span style="color: #7BAE84;">🎉 已達免運</span>
             <span style="color: #7BAE84;">免運費</span>
           </div>
           <div class="summary-row total">
@@ -93,12 +93,10 @@
           </div>
           <div id="freeShippingHint" style="font-size:0.82rem;color:#888;text-align:center;margin-top:8px;padding:8px;background:#f5f5f5;border-radius:8px;"></div>
           <div style="margin-top:12px;padding:12px;background:#FFF8F4;border-radius:8px;font-size:0.8rem;color:#6B4E3D;line-height:1.8;">
-            <strong>🚚 全程冷鏈配送運費</strong><br>
-            🍬 1～2盒：300 元<br>
-            🍬 3～5盒：380 元<br>
-            🍬 6盒（同一地址單筆訂購）：免運費<br>
-            🍬 8～10盒（同一地址）：全冷鏈分箱配送，確保品質<br>
-            ⭐️ 同一配送地址單筆訂購滿 6盒、12盒、18盒、24盒…（6的倍數）皆享免運
+            <strong>🚚 運費與出貨</strong><br>
+            🍬 1～2盒：運費 150 元<br>
+            🍬 同一配送地址 3 盒以上：免運費<br>
+            📦 預計 10 月上旬起陸續採收，依訂單順序出貨，出貨前會先通知您
           </div>
           <button class="checkout-btn" onclick="showCheckoutForm()">
             🎉 前往結帳
@@ -164,8 +162,8 @@
     </div>
   </footer>
 
-  <script src="src/js/data.js?v=9"></script>
-  <script src="src/js/cart.js?v=8"></script>
+  <script src="src/js/data.js?v=10"></script>
+  <script src="src/js/cart.js?v=9"></script>
   <script src="src/js/order-sync.js?v=5"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -232,12 +230,11 @@
 
       const hint = document.getElementById('freeShippingHint');
       if (isFreeShipping) {
-        hint.textContent = `🎉 恭喜！${boxes} 盒（${SHIPPING.freeEvery}的倍數）享免運優惠`;
+        hint.textContent = shippingHint(boxes);
         hint.style.background = '#EDF5EE';
         hint.style.color = '#7BAE84';
       } else {
-        const need = boxesToFreeShipping(boxes);
-        hint.textContent = `目前共 ${boxes} 盒，再加 ${need} 盒湊滿 ${SHIPPING.freeEvery} 的倍數即享免運`;
+        hint.textContent = shippingHint(boxes);
         hint.style.background = '#FFF8F4';
         hint.style.color = '#E8845A';
       }
@@ -351,7 +348,7 @@
                   <span>商品小計</span><span>NT$ ${subtotal.toLocaleString()}</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;padding:4px 0;font-size:0.9rem;">
-                  <span>冷鏈運費</span><span>${shipping === 0 ? '<span style="color:#7BAE84;">免運費</span>' : 'NT$ ' + shipping}</span>
+                  <span>${SHIPPING.label}</span><span>${shipping === 0 ? '<span style="color:#7BAE84;">免運費</span>' : 'NT$ ' + shipping}</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;padding:12px 0 0;font-size:1.2rem;font-weight:900;border-top:2px solid #F5DDD0;margin-top:8px;color:#E8845A;">
                   <span>應付金額</span><span>NT$ ${total.toLocaleString()}</span>

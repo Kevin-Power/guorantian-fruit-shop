@@ -11,92 +11,187 @@ const SEASON = {
 // 本季是否完售：true = 停收新訂單（匯款回報與對帳照常運作）
 const SOLD_OUT = false;
 
-// ===== 運費（同一配送地址單筆訂單）=====
-// 盒數為 freeEvery 的倍數免運；其餘「餘數盒數」依 tiers 級距計費
-// 目前沿用水蜜桃季：1～2盒 300 元、3～5盒 380 元、滿 6 盒（及 6 的倍數）免運
-const SHIPPING = {
-  label: '冷鏈運費',
-  freeEvery: 6,
-  tiers: [
-    { upTo: 2, fee: 300 },
-    { upTo: 5, fee: 380 }
-  ]
+// ===== 運費（同一配送地址單筆訂單，依產季設定）=====
+// freeFrom：滿幾盒免運；freeEvery：幾的倍數免運（餘數盒數依 tiers 計費）
+const SHIPPING_RULES = {
+  // 甘露梨：1～2盒 150 元、同一地址 3 盒以上免運
+  pear: {
+    label: '運費',
+    freeFrom: 3,
+    tiers: [
+      { upTo: 2, fee: 150 }
+    ]
+  },
+  // 水蜜桃：全程冷鏈，1～2盒 300、3～5盒 380、6 的倍數免運
+  peach: {
+    label: '冷鏈運費',
+    freeEvery: 6,
+    tiers: [
+      { upTo: 2, fee: 300 },
+      { upTo: 5, fee: 380 }
+    ]
+  }
 };
+
+const SHIPPING = SHIPPING_RULES[SEASON.key];
 
 // ===== 商品資料（依產季分組）=====
 // spec/size/badge/flag/limited/note 給首頁卡片與價目表使用；price 為 null 代表價格確認中
 const PRODUCT_LINES = {
   // 秋季：梨山甘露梨
   pear: [
-    // ⚠️ 規格、重量與價格待果園確認後填入（price 為 null 時網站顯示「價格確認中」，無法下單）
+    // 2026 梨山甘露梨禮盒：售價 = 通勝果園報價 + 100；10 月上旬起陸續採收，採預購
     {
       id: 31,
-      spec: "8粒裝",
-      size: "",
+      spec: "10粒裝",
+      size: "每顆約10～12兩",
       badge: "🏠 自家吃首選",
       img: "src/img/pear-box.svg",
-      photo: null,
-      name: "梨山甘露梨 8粒裝",
+      photo: "src/img/photo-pear-hand.jpg",
+      name: "梨山甘露梨 10粒裝",
       emoji: "🍐",
-      price: null,
-      unit: "盒（8粒）",
+      price: 800,
+      unit: "盒（10粒，每顆約10～12兩）",
       category: "甘露梨",
       origin: "台中梨山",
-      description: "梨山，因梨得名。生長在海拔2000公尺的高山果園，日夜溫差大，讓甘露梨慢慢把甜分存進果肉，咬下清脆多汁、甜而不膩。8粒裝分量剛好，全家一起分享秋天的滋味。",
-      tags: ["秋季限定", "高山限定", "產地直送"],
+      description: "每顆約10～12兩（約375～450公克），一盒10顆分量十足，全家天天都有得吃。梨山高山甘露梨，果肉細緻、清甜多汁，冰過更爽口。",
+      tags: ["自家吃", "梨山產地", "預購中"],
       inStock: true
     },
     {
       id: 32,
-      spec: "6粒裝",
-      size: "",
-      badge: "🍐 經典規格",
+      spec: "8粒裝",
+      size: "每顆約12～14兩",
+      badge: "🍐 分量剛好",
       img: "src/img/pear-pair.svg",
-      photo: null,
-      name: "梨山甘露梨 6粒裝",
+      photo: "src/img/photo-pear-8box.jpg",
+      name: "梨山甘露梨 8粒裝",
       emoji: "🍐",
-      price: null,
-      unit: "盒（6粒）",
+      price: 900,
+      unit: "盒（8粒，每顆約12～14兩）",
       category: "甘露梨",
       origin: "台中梨山",
-      description: "顆顆飽滿，比8粒裝更大一號。冰過再吃更清脆爽口，一刀切下汁水直流，是秋天最值得等待的高山水果。",
-      tags: ["經典", "高山限定", "產地直送"],
+      description: "每顆約12～14兩，比10粒裝大一號，自家吃、分送親友都剛剛好。咬下清脆多汁、甜而不膩。",
+      tags: ["分量剛好", "梨山產地", "預購中"],
       inStock: true
     },
     {
       id: 33,
-      spec: "5粒裝",
-      size: "",
-      badge: "🎁 送禮首選",
-      img: "src/img/pear-sparkle.svg",
-      photo: null,
-      name: "梨山甘露梨 5粒裝",
+      spec: "8大裝",
+      size: "每顆約14～16兩",
+      badge: "✨ 將近1台斤",
+      img: "src/img/pear-pair.svg",
+      photo: "src/img/photo-pear-8box.jpg",
+      name: "梨山甘露梨 8大裝",
       emoji: "🍐",
-      price: null,
-      unit: "盒（5粒）",
+      price: 1000,
+      unit: "盒（8粒，每顆約14～16兩）",
       category: "甘露梨",
       origin: "台中梨山",
-      description: "精選大果，果形端正飽滿、外觀漂亮，禮盒打開就是滿滿的誠意。秋天送禮，大方又有面子。",
-      tags: ["送禮首選", "高山限定", "產地直送"],
+      description: "每顆約14～16兩，將近1台斤，顆顆飽滿，一刀切下汁水直流。",
+      tags: ["大果", "梨山產地", "預購中"],
       inStock: true
     },
     {
       id: 34,
-      spec: "5大裝",
-      size: "特大果・限量",
-      badge: "👑 頂級限量",
-      limited: true,
-      note: "限量預訂・依採收供貨",
-      img: "src/img/pear-crown.svg",
-      photo: null,
-      name: "梨山甘露梨 5大裝",
+      spec: "8特裝",
+      size: "每顆約16～18兩",
+      badge: "✨ 1台斤以上",
+      img: "src/img/pear-pair.svg",
+      photo: "src/img/photo-pear-8box.jpg",
+      name: "梨山甘露梨 8特裝",
       emoji: "🍐",
-      price: null,
-      unit: "盒（5粒・特大果）",
+      price: 1100,
+      unit: "盒（8粒，每顆約16～18兩）",
       category: "甘露梨",
       origin: "台中梨山",
-      description: "全園挑選的特大果，數量稀少。放在掌心沉甸甸，是甘露梨裡的天花板。※ 特大果為限量規格，可接受預訂，依採收狀況供貨，不保證一定有貨，敬請見諒。",
-      tags: ["限量", "可預訂", "頂級"],
+      description: "每顆約16～18兩，超過1台斤的大果，8顆排滿一盒，打開就是滿滿的份量感。",
+      tags: ["大果", "梨山產地", "預購中"],
+      inStock: true
+    },
+    {
+      id: 35,
+      spec: "6粒裝",
+      size: "每顆約18～20兩",
+      badge: "🎁 送禮首選",
+      img: "src/img/pear-sparkle.svg",
+      photo: "src/img/photo-pear-6box.jpg",
+      name: "梨山甘露梨 6粒裝",
+      emoji: "🍐",
+      price: 1100,
+      unit: "盒（6粒，每顆約18～20兩）",
+      category: "甘露梨",
+      origin: "台中梨山",
+      description: "每顆約18～20兩，大果禮盒的入門款，6顆整齊排好，送禮大方又實在。",
+      tags: ["送禮首選", "梨山產地", "預購中"],
+      inStock: true
+    },
+    {
+      id: 36,
+      spec: "6大裝",
+      size: "每顆約20～22兩",
+      badge: "🎁 大果禮盒",
+      img: "src/img/pear-sparkle.svg",
+      photo: "src/img/photo-pear-6box.jpg",
+      name: "梨山甘露梨 6大裝",
+      emoji: "🍐",
+      price: 1300,
+      unit: "盒（6粒，每顆約20～22兩）",
+      category: "甘露梨",
+      origin: "台中梨山",
+      description: "每顆約20～22兩，果形端正飽滿，禮盒打開就是滿滿的誠意。",
+      tags: ["送禮", "梨山產地", "預購中"],
+      inStock: true
+    },
+    {
+      id: 37,
+      spec: "5粒裝",
+      size: "每顆約22～24兩",
+      badge: "👑 一手握不住",
+      img: "src/img/pear-crown.svg",
+      photo: "src/img/photo-pear-hand.jpg",
+      name: "梨山甘露梨 5粒裝",
+      emoji: "🍐",
+      price: 1400,
+      unit: "盒（5粒，每顆約22～24兩）",
+      category: "甘露梨",
+      origin: "台中梨山",
+      description: "每顆約22～24兩，一手快要握不住的大果，秋天送禮最有面子。",
+      tags: ["特大果", "梨山產地", "預購中"],
+      inStock: true
+    },
+    {
+      id: 38,
+      spec: "5大裝",
+      size: "每顆約24～26兩",
+      badge: "👑 將近1公斤",
+      img: "src/img/pear-crown.svg",
+      photo: "src/img/photo-pear-hand.jpg",
+      name: "梨山甘露梨 5大裝",
+      emoji: "🍐",
+      price: 1500,
+      unit: "盒（5粒，每顆約24～26兩）",
+      category: "甘露梨",
+      origin: "台中梨山",
+      description: "每顆約24～26兩，將近1公斤的特大果，放在掌心沉甸甸。",
+      tags: ["特大果", "梨山產地", "預購中"],
+      inStock: true
+    },
+    {
+      id: 39,
+      spec: "5特裝",
+      size: "每顆約26～28兩",
+      badge: "👑 頂級特大果",
+      img: "src/img/pear-crown.svg",
+      photo: "src/img/photo-pear-hand.jpg",
+      name: "梨山甘露梨 5特裝",
+      emoji: "🍐",
+      price: 1600,
+      unit: "盒（5粒，每顆約26～28兩）",
+      category: "甘露梨",
+      origin: "台中梨山",
+      description: "每顆約26～28兩（約1公斤），全系列最大的頂級規格，是甘露梨裡的天花板。",
+      tags: ["頂級", "約1公斤", "預購中"],
       inStock: true
     }
   ],
@@ -204,7 +299,7 @@ const KNOWLEDGE = {
       emoji: "🍐",
       title: "怎麼挑最好吃的甘露梨",
       category: "挑選技巧",
-      content: "好梨看三件事：果形飽滿端正、果皮光滑沒有碰傷、同樣大小拿起來越沉的越多汁。水梨不需要追熟，在樹上熟成的甜度就是它最好吃的樣子——所以「熟了才採」比什麼都重要，這也是我們堅持最佳熟度採收的原因。",
+      content: "好梨看三件事：果形飽滿端正、果皮光滑沒有碰傷、同樣大小拿起來越沉的越多汁。水梨不需要追熟，在樹上熟成的甜度就是它最好吃的樣子——所以「熟了才採」比什麼都重要。",
       tips: ["同樣大小，拿起來越沉的越多汁", "果皮光滑完整、沒有碰傷凹陷", "果梗新鮮，代表採收不久"]
     },
     {

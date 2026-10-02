@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 渲染首頁快速訂購（當季各規格，資料來自 data.js）
   const qoGrid = document.getElementById('quickOrderGrid');
   if (qoGrid) {
+    qoGrid.classList.add('qo-count-' + fruitsData.length);
     const soldOut = typeof SOLD_OUT !== 'undefined' && SOLD_OUT;
     qoGrid.innerHTML = fruitsData.map(f => {
       const weight = f.unit.replace(/^盒（/, '').replace(/）$/, '');
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const priceText = f => f.price != null ? `NT$ ${f.price.toLocaleString()}` : '確認中';
   const heroRows = document.getElementById('heroPriceRows');
   if (heroRows) {
+    heroRows.classList.toggle('hpc-compact', fruitsData.length > 5);
     heroRows.innerHTML = fruitsData.map(f => `
       <div class="hpc-row"><span class="hpc-spec">${f.spec || f.name}${f.size ? ` <small>${f.size}</small>` : ''}</span><span class="hpc-price">${priceText(f)}</span></div>`).join('');
   }
@@ -129,10 +131,7 @@ function renderHomeCheckout() {
   const subtotal = Cart.getTotal();
   const shipping = calcShipping(boxes);
   const total = subtotal + shipping;
-  const need = boxesToFreeShipping(boxes);
-  const hint = shipping === 0
-    ? `🎉 ${boxes} 盒（${SHIPPING.freeEvery}的倍數）享免運優惠`
-    : `目前 ${boxes} 盒，再加 ${need} 盒湊滿 ${SHIPPING.freeEvery} 的倍數即免運`;
+  const hint = shippingHint(boxes);
   document.getElementById('hcSummary').innerHTML = `
     <h3 style="font-size:1.15rem;font-weight:800;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid #F5DDD0;">🧾 訂單摘要</h3>
     ${Cart.items.map(i => `
@@ -218,7 +217,7 @@ function showHomeOrderSuccess(order) {
     <div style="max-width:620px;margin:0 auto;background:white;border:2px solid #7BAE84;border-radius:20px;padding:32px 28px;text-align:center;box-shadow:0 12px 40px rgba(123,174,132,0.2);">
       <div style="font-size:3.2rem;margin-bottom:8px;">🎉</div>
       <h2 style="font-size:1.5rem;font-weight:900;margin-bottom:6px;">訂單成立！</h2>
-      <p style="color:#666;font-size:0.9rem;margin-bottom:20px;">請於 <strong>3 天內</strong>完成匯款，我們核對後依採收狀況及訂單順序出貨，出貨當天提供黑貓宅配單號</p>
+      <p style="color:#666;font-size:0.9rem;margin-bottom:20px;">請於 <strong>3 天內</strong>完成匯款，我們核對後依採收狀況及訂單順序出貨，出貨前會先通知您，出貨當天提供黑貓宅配單號</p>
       <div style="background:#FFF8F4;border-radius:12px;padding:16px;text-align:left;font-size:0.9rem;color:#555;line-height:2;margin-bottom:14px;">
         訂單編號：<strong>${order.orderNo}</strong><br>
         ${order.items.map(i => `${i.emoji} ${i.name} × ${i.quantity}盒`).join('<br>')}<br>

@@ -2163,3 +2163,17 @@ body.has-cartbar .line-float { bottom: 88px; }
   .season-teaser { flex-wrap: wrap; }
   .season-teaser a { margin-left: 0; width: 100%; text-align: center; }
 }
+
+/* ===== 甘露梨 9 種規格：桌機排 3×3、價目卡緊湊、實拍三連圖 ===== */
+@media (min-width: 900px) {
+  .qo-grid.qo-count-9 { grid-template-columns: repeat(3, 1fr); max-width: 960px; margin-left: auto; margin-right: auto; }
+  .products-grid.grid-count-9 { grid-template-columns: repeat(3, 1fr); }
+}
+.hpc-compact .hpc-row { padding: 5px 2px; font-size: 0.88rem; }
+.hpc-compact .hpc-row small { font-size: 0.72rem; }
+.unbox-grid.unbox-three { grid-template-columns: repeat(3, 1fr); max-width: 900px; margin-left: auto; margin-right: auto; }
+@media (max-width: 768px) {
+  .unbox-grid.unbox-three { grid-template-columns: 1fr 1fr; }
+  .unbox-grid.unbox-three .unbox-item:last-child { grid-column: 1 / -1; }
+  .unbox-grid.unbox-three .unbox-item:last-child img { aspect-ratio: 1 / 1; }
+}
