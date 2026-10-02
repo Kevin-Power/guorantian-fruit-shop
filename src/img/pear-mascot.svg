@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -26 450 606" width="450" height="606">
+  <title>梨山甘露梨</title>
+  <defs>
+    <radialGradient id="mg" cx="40%" cy="36%" r="76%">
+      <stop offset="0%" stop-color="#FAE3A6"/>
+      <stop offset="56%" stop-color="#EEC676"/>
+      <stop offset="100%" stop-color="#DDA85E"/>
+    </radialGradient>
+  </defs>
+  <!-- 葉子 -->
+  <g transform="translate(250 152) scale(1.25) translate(-250 -152)">
+  <path d="M 244 160 C 210 134 194 82 214 28 C 254 58 272 112 252 158 Z" fill="#86B9A9"/>
+  <path d="M 246 150 C 236 118 228 84 217 42" fill="none" stroke="#C9E5DB" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M 238 116 L 224 104 M 233 96 L 220 82 M 229 76 L 218 64 M 241 104 L 252 90 M 236 84 L 245 70" fill="none" stroke="#C9E5DB" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M 250 156 C 288 118 350 100 408 114 C 384 160 316 186 252 162 Z" fill="#5F9A8A"/>
+  <path d="M 258 156 C 302 140 352 124 398 117" fill="none" stroke="#B9DCD0" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M 292 146 L 280 132 M 324 136 L 314 120 M 356 128 L 348 114 M 300 146 L 310 160 M 334 136 L 346 150 M 364 128 L 376 140" fill="none" stroke="#B9DCD0" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+  <!-- 果梗 -->
+  <path d="M 226 220 C 228 192 236 170 250 152" fill="none" stroke="#8C5E3C" stroke-width="13" stroke-linecap="round"/>
+  <!-- 果身 -->
+  <path d="M 225.0 214.0 C 252.0 197.9 306.1 195.9 344.0 219.9 C 392.0 250.0 407.9 318.0 404.0 381.9 C 397.9 473.9 326.0 550.0 225.0 552.0 C 124.0 550.0 52.1 473.9 46.0 381.9 C 42.1 318.9 58.0 250.0 106.0 219.9 C 143.9 195.9 198.0 197.9 225.0 214.0 Z" fill="url(#mg)" stroke="#FCEBD2" stroke-width="12" stroke-linejoin="round"/>
+  <path d="M 80 312 C 84 280 100 254 126 236" fill="none" stroke="#FFF4D8" stroke-width="8" stroke-linecap="round" opacity="0.95"/>
+  <circle cx="118" cy="268" r="7" fill="#FFF4D8"/>
+  <circle cx="140" cy="252" r="3.5" fill="#FFF4D8"/>
+  <circle cx="104" cy="292" r="3" fill="#FFF4D8"/>
+  <circle cx="290" cy="252" r="3" fill="#BF9246" opacity="0.5"/><circle cx="322" cy="272" r="3" fill="#BF9246" opacity="0.5"/><circle cx="354" cy="302" r="3" fill="#BF9246" opacity="0.5"/><circle cx="372" cy="342" r="3" fill="#BF9246" opacity="0.5"/><circle cx="382" cy="392" r="3" fill="#BF9246" opacity="0.5"/><circle cx="362" cy="444" r="3" fill="#BF9246" opacity="0.5"/><circle cx="332" cy="484" r="3" fill="#BF9246" opacity="0.5"/><circle cx="298" cy="512" r="3" fill="#BF9246" opacity="0.5"/><circle cx="250" cy="530" r="3" fill="#BF9246" opacity="0.5"/><circle cx="198" cy="526" r="3" fill="#BF9246" opacity="0.5"/><circle cx="150" cy="506" r="3" fill="#BF9246" opacity="0.5"/><circle cx="112" cy="470" r="3" fill="#BF9246" opacity="0.5"/><circle cx="90" cy="420" r="3" fill="#BF9246" opacity="0.5"/><circle cx="82" cy="362" r="3" fill="#BF9246" opacity="0.5"/><circle cx="172" cy="272" r="3" fill="#BF9246" opacity="0.5"/><circle cx="210" cy="246" r="3" fill="#BF9246" opacity="0.5"/><circle cx="262" cy="282" r="3" fill="#BF9246" opacity="0.5"/><circle cx="336" cy="402" r="3" fill="#BF9246" opacity="0.5"/><circle cx="124" cy="404" r="3" fill="#BF9246" opacity="0.5"/><circle cx="182" cy="492" r="3" fill="#BF9246" opacity="0.5"/><circle cx="282" cy="488" r="3" fill="#BF9246" opacity="0.5"/><circle cx="344" cy="358" r="3" fill="#BF9246" opacity="0.5"/><circle cx="312" cy="236" r="3" fill="#BF9246" opacity="0.5"/><circle cx="148" cy="236" r="3" fill="#BF9246" opacity="0.5"/>
+  <circle cx="302" cy="302" r="2.6" fill="#FFF3D4" opacity="0.85"/><circle cx="352" cy="414" r="2.6" fill="#FFF3D4" opacity="0.85"/><circle cx="142" cy="444" r="2.6" fill="#FFF3D4" opacity="0.85"/><circle cx="240" cy="502" r="2.6" fill="#FFF3D4" opacity="0.85"/><circle cx="196" cy="300" r="2.6" fill="#FFF3D4" opacity="0.85"/><circle cx="318" cy="452" r="2.6" fill="#FFF3D4" opacity="0.85"/>
+  <!-- 臉 -->
+  <ellipse cx="158" cy="410" rx="25" ry="16" fill="#F4A69E" opacity="0.82"/>
+  <ellipse cx="296" cy="420" rx="25" ry="16" fill="#F4A69E" opacity="0.82"/>
+  <circle cx="190" cy="372" r="6.5" fill="#2A2420"/>
+  <circle cx="264" cy="382" r="6.5" fill="#2A2420"/>
+  <path d="M 209 368 C 206 398 214 414 229 413 C 243 412 249 399 247 381" fill="none" stroke="#2A2420" stroke-width="6" stroke-linecap="round"/>
+</svg>
